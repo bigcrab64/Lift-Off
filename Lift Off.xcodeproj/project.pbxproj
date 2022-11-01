@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		F70719282911758F00168EBB /* MoonPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70719272911758F00168EBB /* MoonPoint.swift */; };
+		F707193529117B7500168EBB /* longitude10x10.csv in Resources */ = {isa = PBXBuildFile; fileRef = F707193129117B7500168EBB /* longitude10x10.csv */; };
+		F707193629117B7500168EBB /* slope10x10.csv in Resources */ = {isa = PBXBuildFile; fileRef = F707193229117B7500168EBB /* slope10x10.csv */; };
+		F707193729117B7500168EBB /* latitude10x10.csv in Resources */ = {isa = PBXBuildFile; fileRef = F707193329117B7500168EBB /* latitude10x10.csv */; };
+		F707193829117B7500168EBB /* height10x10.csv in Resources */ = {isa = PBXBuildFile; fileRef = F707193429117B7500168EBB /* height10x10.csv */; };
 		F73659032910235C0080A8A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73659022910235C0080A8A5 /* AppDelegate.swift */; };
 		F73659072910235C0080A8A5 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73659062910235C0080A8A5 /* GameViewController.swift */; };
 		F736590A2910235C0080A8A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F73659082910235C0080A8A5 /* Main.storyboard */; };
@@ -37,6 +41,10 @@
 
 /* Begin PBXFileReference section */
 		F70719272911758F00168EBB /* MoonPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoonPoint.swift; sourceTree = "<group>"; };
+		F707193129117B7500168EBB /* longitude10x10.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = longitude10x10.csv; sourceTree = "<group>"; };
+		F707193229117B7500168EBB /* slope10x10.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = slope10x10.csv; sourceTree = "<group>"; };
+		F707193329117B7500168EBB /* latitude10x10.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = latitude10x10.csv; sourceTree = "<group>"; };
+		F707193429117B7500168EBB /* height10x10.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = height10x10.csv; sourceTree = "<group>"; };
 		F73658FF2910235C0080A8A5 /* Lift Off.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lift Off.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F73659022910235C0080A8A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F73659062910235C0080A8A5 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +109,10 @@
 				F73659022910235C0080A8A5 /* AppDelegate.swift */,
 				F70719272911758F00168EBB /* MoonPoint.swift */,
 				F73659062910235C0080A8A5 /* GameViewController.swift */,
+				F707193429117B7500168EBB /* height10x10.csv */,
+				F707193329117B7500168EBB /* latitude10x10.csv */,
+				F707193129117B7500168EBB /* longitude10x10.csv */,
+				F707193229117B7500168EBB /* slope10x10.csv */,
 				F73659082910235C0080A8A5 /* Main.storyboard */,
 				F736590B2910235D0080A8A5 /* Assets.xcassets */,
 				F736590D2910235D0080A8A5 /* LaunchScreen.storyboard */,
@@ -230,7 +242,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F736590F2910235D0080A8A5 /* LaunchScreen.storyboard in Resources */,
+				F707193529117B7500168EBB /* longitude10x10.csv in Resources */,
 				F736590C2910235D0080A8A5 /* Assets.xcassets in Resources */,
+				F707193729117B7500168EBB /* latitude10x10.csv in Resources */,
+				F707193629117B7500168EBB /* slope10x10.csv in Resources */,
+				F707193829117B7500168EBB /* height10x10.csv in Resources */,
 				F736590A2910235C0080A8A5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

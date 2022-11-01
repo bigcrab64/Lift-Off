@@ -16,10 +16,10 @@ typealias MoonSurface = [[MoonPoint]]
 extension MoonPoint {
 
     static func buildArray() -> MoonSurface {
-        let latitude = decodeCsvNumberFile(name: "latitude")
-        let longitude = decodeCsvNumberFile(name: "longitude")
-        let height = decodeCsvNumberFile(name: "height")
-        let slope = decodeCsvNumberFile(name: "slope")
+        let latitude = decodeCsvNumberFile(name: "latitude10x10")
+        let longitude = decodeCsvNumberFile(name: "longitude10x10")
+        let height = decodeCsvNumberFile(name: "height10x10")
+        let slope = decodeCsvNumberFile(name: "slope10x10")
         // print(results)
         var points: [[MoonPoint]] = []
         for y in 0...9 {

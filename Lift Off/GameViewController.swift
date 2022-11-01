@@ -15,7 +15,9 @@ import SceneKit
 class GameViewController: UIViewController {
 
     var selectedSegment = 0
-
+    
+    var surface: MoonSurface = []
+    
     var scnView: SCNView!
     var scnScene: SCNScene!
     var cameraNode: SCNNode!
@@ -173,6 +175,7 @@ class GameViewController: UIViewController {
         setupScene()
         setupCamera()
         setupSegControl()
+        surface = MoonPoint.buildArray()
         setupGeometry()
     }
 
