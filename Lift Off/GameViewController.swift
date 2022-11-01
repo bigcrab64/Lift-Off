@@ -19,7 +19,7 @@ class GameViewController: UIViewController {
     var scnView: SCNView!
     var scnScene: SCNScene!
     var cameraNode: SCNNode!
-
+    
     func setupView() {
         scnView = self.view as? SCNView
         // 1
@@ -35,6 +35,7 @@ class GameViewController: UIViewController {
         scnScene = SCNScene()
         scnView.scene = scnScene
     }
+    
 
     func setupCamera() {
         // 1
@@ -48,7 +49,8 @@ class GameViewController: UIViewController {
     }
 
     func setupGeometry() {
-        // Vertex
+        //Vertices
+        
         let vertices: [SCNVector3] = [SCNVector3(-1, 0, 0),
                                       SCNVector3(0, 0, 0),
                                       SCNVector3(1, 0, 0),
@@ -60,7 +62,6 @@ class GameViewController: UIViewController {
 
         // Faces
         let indices: [Int32] = [4,4, 0,1,4,3, 1,2,5,4]
-
         let indexData = Data(bytes: indices, count: indices.count * MemoryLayout<Int32>.size)
         let indexElement = SCNGeometryElement(data: indexData,
                                               primitiveType: SCNGeometryPrimitiveType.polygon,
@@ -148,6 +149,7 @@ class GameViewController: UIViewController {
 
     
     
+    
     @objc func segmentChanged(sender: UISegmentedControl) {
         selectedSegment = sender.selectedSegmentIndex
         setupGeometry()
@@ -170,7 +172,6 @@ class GameViewController: UIViewController {
         setupView()
         setupScene()
         setupCamera()
-
         setupSegControl()
         setupGeometry()
     }
