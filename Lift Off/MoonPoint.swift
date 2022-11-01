@@ -11,9 +11,11 @@ struct MoonPoint {
     var slope: Double
 }
 
+typealias MoonSurface = [[MoonPoint]]
+
 extension MoonPoint {
 
-    static func buildArray() -> [[MoonPoint]] {
+    static func buildArray() -> MoonSurface {
         let latitude = decodeCsvNumberFile(name: "latitude")
         let longitude = decodeCsvNumberFile(name: "longitude")
         let height = decodeCsvNumberFile(name: "height")
