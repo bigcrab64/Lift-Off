@@ -45,7 +45,7 @@ class GameViewController: UIViewController {
         // 2
         cameraNode.camera = SCNCamera()
         // 3
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 5)
+        cameraNode.position = SCNVector3(x: 200, y: 100, z: 200)
         // 4
         scnScene.rootNode.addChildNode(cameraNode)
     }
@@ -53,17 +53,53 @@ class GameViewController: UIViewController {
     func setupGeometry() {
         //Vertices
         
-        let vertices: [SCNVector3] = [SCNVector3(-1, 0, 0),
-                                      SCNVector3(0, 0, 0),
-                                      SCNVector3(1, 0, 0),
-                                      SCNVector3(-1, 1, 0),
-                                      SCNVector3(0, 1, 0),
-                                      SCNVector3(1, 1, 0)]
+        var vertices: [SCNVector3] = []
+        
+        for i in 0...9 {
+            for j in 0...9 {
+                vertices.append(SCNVector3(x: 40 * Float(j), y: 0, z: 40 * Float(i)))
+            }
+        }
+        
+        
+        
+      /*
+        let vertices: [SCNVector3] = [SCNVector3(0, 0, 0),    //0
+                                      SCNVector3(40, 0, 0),   //1
+                                      SCNVector3(80, 0, 0),   //2
+                                      
+                                      SCNVector3(0, 0, -40),  //3
+                                      SCNVector3(40, 0, -40), //4
+                                      SCNVector3(80, 0, -40), //5
+                                      
+                                      SCNVector3(0, 0, -80),  //6
+                                      SCNVector3(40, 0, -80), //7
+                                      SCNVector3(80, 1, -80)] // 8
+        */
+        
 
         let vertexSource = SCNGeometrySource.init(data: vertices, semantic: .vertex)
 
         // Faces
-        let indices: [Int32] = [4,4, 0,1,4,3, 1,2,5,4]
+        //let indices: [Int32] = [4,4,4,4, 0,1,4,3, 1,2,5,4, 3,4,7,6, 4,5,8,7  ]
+        
+        var indices:   [Int32] = []
+        
+        for _ in 0...(9 * 9) {
+            indices.append(4)
+        }
+        for i in 0...8 {
+        
+            for j in 0...8 {
+                indices.append(Int32((i * 10) + j))
+                indices.append(Int32((i * 10) + j + 1))
+                indices.append(Int32(((i + 1) * 10) + j + 1))
+                indices.append(Int32(((i + 1) * 10) + j))
+            }
+        }
+                
+                
+                
         let indexData = Data(bytes: indices, count: indices.count * MemoryLayout<Int32>.size)
         let indexElement = SCNGeometryElement(data: indexData,
                                               primitiveType: SCNGeometryPrimitiveType.polygon,
