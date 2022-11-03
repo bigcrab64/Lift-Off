@@ -45,7 +45,9 @@ class GameViewController: UIViewController {
         // 2
         cameraNode.camera = SCNCamera()
         // 3
-        cameraNode.position = SCNVector3(x: 200, y: 100, z: 200)
+        cameraNode.position = SCNVector3(x: 20, y: 0, z: 50)
+        cameraNode.camera?.zFar = 2000
+        cameraNode.camera? .zNear = 0
         // 4
         scnScene.rootNode.addChildNode(cameraNode)
     }
@@ -85,7 +87,7 @@ class GameViewController: UIViewController {
         
         var indices:   [Int32] = []
         
-        for _ in 0...(9 * 9) {
+        for _ in 0..<81 {
             indices.append(4)
         }
         for i in 0...8 {
@@ -107,12 +109,18 @@ class GameViewController: UIViewController {
                                               bytesPerIndex: MemoryLayout<Int32>.size)
 
         // Normals
-        let normals: [SCNVector3] = [SCNVector3(0, 0, 1),
-                                     SCNVector3(0, 0, 1),
-                                     SCNVector3(0, 0, 1),
-                                     SCNVector3(0, 0, 1),
-                                     SCNVector3(0, 0, 1),
-                                     SCNVector3(0, 0, 1)]
+   //     let normals: [SCNVector3] = [SCNVector3(0, 0, 1),
+   //                                  SCNVector3(0, 0, 1),
+  //                                   SCNVector3(0, 0, 1),
+  //                                   SCNVector3(0, 0, 1),
+  //                                   SCNVector3(0, 0, 1),
+ //                                    SCNVector3(0, 0, 1)]
+        var normals:[SCNVector3] = []
+        
+        for _ in 0...(10 * 10) {
+            normals.append(SCNVector3(0,1,0))
+        }
+        
 
         let normalSource = SCNGeometrySource.init(data: normals, semantic: .normal)
 
@@ -210,7 +218,7 @@ class GameViewController: UIViewController {
         setupView()
         setupScene()
         setupCamera()
-        setupSegControl()
+       // setupSegControl()
         surface = MoonPoint.buildArray()
         setupGeometry()
     }
