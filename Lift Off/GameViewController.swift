@@ -45,7 +45,7 @@ class GameViewController: UIViewController {
         // 2
         cameraNode.camera = SCNCamera()
         // 3
-        cameraNode.position = SCNVector3(x: 120, y: -1300, z: 0)
+        cameraNode.position = SCNVector3(x: 200, y: -1300, z: -200)
         cameraNode.camera?.zFar = 2000
         cameraNode.camera? .zNear = 0
         // 4
@@ -140,10 +140,11 @@ class GameViewController: UIViewController {
         // Textures
 
         let uvList:[simd_float2] = [simd_float2(x: 0, y: 0),
-                                    simd_float2(x: 0.5, y: 0),
+                                    simd_float2(x: 0.01, y: 0),
                                     simd_float2(x: 1, y: 0),
                                     simd_float2(x: 0, y: 1),
-                                    simd_float2(x: 0.5, y: 1),
+                                    simd_float2(x: 0.01, y: 1),
+                                    simd_float2(x: 0.01, y: 0),
                                       simd_float2(x: 1, y: 1)]
 
         //fill UV list with texture coords
