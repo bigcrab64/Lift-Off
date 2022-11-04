@@ -45,10 +45,33 @@ class GameViewController: UIViewController {
         // 2
         cameraNode.camera = SCNCamera()
         // 3
-        cameraNode.position = SCNVector3(x: 0, y: -1290, z: 40)
+        cameraNode.position = SCNVector3(x: 200, y: -1200, z: -200)
+        
+        cameraNode.camera?.zNear = 0
+        cameraNode.camera?.zFar = 1000
+        
         // 4
         scnScene.rootNode.addChildNode(cameraNode)
     }
+    
+    @objc func rotateCamera () {
+        var  angles = cameraNode.eulerAngles
+        angles.y += 0.1
+        cameraNode.eulerAngles = angles
+    }
+    
+    @objc func rotateAround() {
+        DispatchQueue.global(qos: .userInitiated) .async {
+            for _ in  0...1000 {
+                DispatchQueue.main.async {
+                    self.rotateCamera()
+                }
+                usleep(100000)
+            }
+        }
+    }
+    
+    
 
     func setupGeometry() {
         //Vertices
@@ -102,13 +125,14 @@ class GameViewController: UIViewController {
 
         // Colors
         var colors: [SCNVector3] = []
-   
-        for _ in vertices {
-            colors.append(SCNVector3(x: 1.0, y: 0.1, z: 1.0))
+
+        for i in 0...9 {
+            for j in 0...9 {
+                colors.append(surface.slopeColorAt(x: j, y: i))
+            }
         }
-
+        
         let colorSource = SCNGeometrySource.init(data: colors, semantic: .color)
-
         // Textures
 
       /*  let uvList:[simd_float2] = [simd_float2(x: 0, y: 0),
@@ -195,12 +219,23 @@ class GameViewController: UIViewController {
         segCtrl.addTarget(self, action: #selector(segmentChanged(sender:)), for: .valueChanged)
         self.view.addSubview(segCtrl)
     }
+    
+    func setupRotateButton () {
+        let viewW = self.view.frame.width
+        let viewH = self.view.frame.height
+        let button = UIButton(frame: CGRect(x: 0.75 * (viewW - 200), y: viewH - 750, width: 100, height: 40))
+        button.setTitle("Rotate", for: .normal)
+        button.backgroundColor = .black
+        button.addTarget(self, action: #selector(rotateAround), for: .touchUpInside)
+        self.view.addSubview(button)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupScene()
         setupCamera()
+        setupRotateButton()
         setupSegControl()
         surface = MoonPoint.buildArray()
         setupGeometry()
