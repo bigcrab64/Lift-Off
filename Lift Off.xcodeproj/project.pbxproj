@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79EEF2052915666100F0B37D /* SlopeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EEF2042915666100F0B37D /* SlopeColor.swift */; };
 		F70719282911758F00168EBB /* MoonPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70719272911758F00168EBB /* MoonPoint.swift */; };
 		F707193529117B7500168EBB /* longitude10x10.csv in Resources */ = {isa = PBXBuildFile; fileRef = F707193129117B7500168EBB /* longitude10x10.csv */; };
 		F707193629117B7500168EBB /* slope10x10.csv in Resources */ = {isa = PBXBuildFile; fileRef = F707193229117B7500168EBB /* slope10x10.csv */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		79EEF2042915666100F0B37D /* SlopeColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlopeColor.swift; sourceTree = "<group>"; };
 		F70719272911758F00168EBB /* MoonPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoonPoint.swift; sourceTree = "<group>"; };
 		F707193129117B7500168EBB /* longitude10x10.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = longitude10x10.csv; sourceTree = "<group>"; };
 		F707193229117B7500168EBB /* slope10x10.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = slope10x10.csv; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				F707193329117B7500168EBB /* latitude10x10.csv */,
 				F707193129117B7500168EBB /* longitude10x10.csv */,
 				F707193229117B7500168EBB /* slope10x10.csv */,
+				79EEF2042915666100F0B37D /* SlopeColor.swift */,
 				F73659082910235C0080A8A5 /* Main.storyboard */,
 				F736590B2910235D0080A8A5 /* Assets.xcassets */,
 				F736590D2910235D0080A8A5 /* LaunchScreen.storyboard */,
@@ -273,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F73659072910235C0080A8A5 /* GameViewController.swift in Sources */,
+				79EEF2052915666100F0B37D /* SlopeColor.swift in Sources */,
 				F73659032910235C0080A8A5 /* AppDelegate.swift in Sources */,
 				F70719282911758F00168EBB /* MoonPoint.swift in Sources */,
 			);

@@ -45,7 +45,7 @@ class GameViewController: UIViewController {
         // 2
         cameraNode.camera = SCNCamera()
         // 3
-        cameraNode.position = SCNVector3(x: 20, y: 0, z: 50)
+        cameraNode.position = SCNVector3(x: 120, y: -1300, z: 0)
         cameraNode.camera?.zFar = 2000
         cameraNode.camera? .zNear = 0
         // 4
@@ -59,7 +59,8 @@ class GameViewController: UIViewController {
         
         for i in 0...9 {
             for j in 0...9 {
-                vertices.append(SCNVector3(x: 40 * Float(j), y: 0, z: 40 * Float(i)))
+                vertices.append(surface.point3dAt(x: j, y: i))
+               // vertices.append(SCNVector3(x: 40 * Float(j), y: Float(surface[i][j].height), z: 40 * Float(i)))
             }
         }
         
@@ -117,21 +118,23 @@ class GameViewController: UIViewController {
  //                                    SCNVector3(0, 0, 1)]
         var normals:[SCNVector3] = []
         
-        for _ in 0...(10 * 10) {
-            normals.append(SCNVector3(0,1,0))
+        for i in 0...9 {
+            for j in 0...9{
+                normals.append(surface.normalAt(x: j, y: i))
+            }
         }
         
 
         let normalSource = SCNGeometrySource.init(data: normals, semantic: .normal)
 
         // Colors
-        let colors: [SCNVector3] = [SCNVector3(1, 0, 0.3),//bottom vertices
-                                    SCNVector3(0.5, 0, 0.5),
-                                    SCNVector3(0, 0, 1),
-                                    SCNVector3(1, 0, 0.3),//top vertices
-                                    SCNVector3(0.5, 0, 0.5),
-                                    SCNVector3(0, 0, 1)]
-
+        var colors: [SCNVector3] = []
+        
+        for i in 0...9 {
+            for j in 0...9{
+                colors.append(surface.slopeColorAt(x: j, y: i))
+            }
+        }
         let colorSource = SCNGeometrySource.init(data: colors, semantic: .color)
 
         // Textures
@@ -218,7 +221,7 @@ class GameViewController: UIViewController {
         setupView()
         setupScene()
         setupCamera()
-       // setupSegControl()
+        setupSegControl()
         surface = MoonPoint.buildArray()
         setupGeometry()
     }
@@ -251,4 +254,5 @@ extension SCNGeometrySource {
     }
 
 }
+
 
