@@ -51,6 +51,25 @@ class GameViewController: UIViewController {
         // 4
         scnScene.rootNode.addChildNode(cameraNode)
     }
+    
+    @objc func rotateCamera()
+    {
+        var angles = cameraNode.eulerAngles
+        angles.y += 0.1
+        cameraNode.eulerAngles = angles
+    }
+    
+    func rotateAround()
+    {
+        DispatchQueue.global(qos: .userInitiated).async {
+            for i in 0...1000{
+                DispatchQueue.main.async {
+                    self.rotateCamera()
+                }
+                usleep(100000)
+            }
+        }
+    }
 
     func setupGeometry() {
         //Vertices
@@ -216,6 +235,16 @@ class GameViewController: UIViewController {
         segCtrl.addTarget(self, action: #selector(segmentChanged(sender:)), for: .valueChanged)
         self.view.addSubview(segCtrl)
     }
+    func setupRotateButton()
+    {
+        let viewW = self.view.frame.width
+        let viewH = self.view.frame.height
+        var button = UIButton(type: .custom)
+        button = UIButton(frame: CGRect(x: 0.5 * (viewW - 200), y: viewH - 200, width: 200, height: 40))
+        button.setTitle("rotate", for: .normal)
+        button.backgroundColor = .white
+        button.addTarget(self, action: #selector(rotateCamera), for: .touchUpInside)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -223,8 +252,10 @@ class GameViewController: UIViewController {
         setupScene()
         setupCamera()
         setupSegControl()
+        setupRotateButton()
         surface = MoonPoint.buildArray()
         setupGeometry()
+        //rotateAround()
     }
 
     override var prefersStatusBarHidden: Bool {
