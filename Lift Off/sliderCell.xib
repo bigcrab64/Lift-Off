@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sliderCell" id="VkB-fB-L31" customClass="sliderCell" customModule="Lift_Off" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VkB-fB-L31" id="74k-HH-uSH">
+                <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="BqF-o9-sxN">
+                        <rect key="frame" x="98" y="5.6666666666666679" width="284" height="34"/>
+                    </slider>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTj-TM-fr2">
+                        <rect key="frame" x="20" y="0.0" width="33" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bry-ym-yVo">
+                        <rect key="frame" x="41" y="23" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="BqF-o9-sxN" firstAttribute="leading" secondItem="74k-HH-uSH" secondAttribute="leading" constant="100" id="9UQ-wd-2f2"/>
+                    <constraint firstItem="VTj-TM-fr2" firstAttribute="leading" secondItem="74k-HH-uSH" secondAttribute="leading" constant="20" symbolic="YES" id="FGI-KJ-jGU"/>
+                    <constraint firstItem="BqF-o9-sxN" firstAttribute="centerY" secondItem="74k-HH-uSH" secondAttribute="centerY" id="dke-uY-Aw3"/>
+                    <constraint firstItem="Bry-ym-yVo" firstAttribute="leading" secondItem="74k-HH-uSH" secondAttribute="leading" constant="41" id="oMV-0Z-6Sb"/>
+                    <constraint firstAttribute="trailing" secondItem="BqF-o9-sxN" secondAttribute="trailing" constant="10" id="pNf-it-Nuz"/>
+                    <constraint firstItem="VTj-TM-fr2" firstAttribute="top" secondItem="74k-HH-uSH" secondAttribute="top" id="usR-s0-kmy"/>
+                    <constraint firstItem="Bry-ym-yVo" firstAttribute="top" secondItem="VTj-TM-fr2" secondAttribute="bottom" constant="2" id="zXM-td-FIL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="TitleLabel" destination="VTj-TM-fr2" id="M9b-b9-jQH"/>
+                <outlet property="slider" destination="BqF-o9-sxN" id="ZW5-qL-Iod"/>
+                <outlet property="valueLable" destination="Bry-ym-yVo" id="wkN-dn-7J0"/>
+            </connections>
+            <point key="canvasLocation" x="151" y="51"/>
+        </tableViewCell>
+    </objects>
+</document>

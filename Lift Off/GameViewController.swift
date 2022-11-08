@@ -15,6 +15,7 @@ import SceneKit
 class GameViewController: UIViewController {
 
     var selectedSegment = 0
+    var sceneControl: sceneCNT_VC?
     
     var surface: MoonSurface = []
     
@@ -30,7 +31,7 @@ class GameViewController: UIViewController {
         scnView.allowsCameraControl = true
         // 3
         scnView.autoenablesDefaultLighting = true
-        scnView.backgroundColor = UIColor.gray
+        scnView.backgroundColor = UIColor.blue
     }
 
     func setupScene() {
@@ -62,7 +63,7 @@ class GameViewController: UIViewController {
     func rotateAround()
     {
         DispatchQueue.global(qos: .userInitiated).async {
-            for i in 0...1000{
+            for _ in 0...1000{
                 DispatchQueue.main.async {
                     self.rotateCamera()
                 }
@@ -245,6 +246,30 @@ class GameViewController: UIViewController {
         button.backgroundColor = .white
         button.addTarget(self, action: #selector(rotateCamera), for: .touchUpInside)
     }
+    
+    @objc func showControls()
+    {
+        let storyboard = UIStoryboard(name: "sceneCNT-VC", bundle: nil)
+        if let controller = storyboard.instantiateInitialViewController() as? sceneCNT_VC{
+            let bounds = self.view.bounds
+            let frame = CGRect(x: 0.5 * (bounds.width - 300), y: bounds.height - 400, width: 300, height: 300)
+            controller.view.frame = frame
+            self.view.addSubview(controller.view)
+            self.addChild(controller)
+            controller.didMove(toParent: self)
+        }
+    }
+    
+    func setupControlButton()
+    {
+        let viewW = self.view.frame.width
+       //let viewH = self.view.frame.height
+        let button = UIButton(frame: CGRect(x: viewW - 60, y: 60, width: 44, height: 44))
+        button.setImage(UIImage(systemName: "gear"), for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(showControls), for: .touchUpInside)
+        self.view.addSubview(button)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -253,6 +278,7 @@ class GameViewController: UIViewController {
         setupCamera()
         setupSegControl()
         setupRotateButton()
+        setupControlButton()
         surface = MoonPoint.buildArray()
         setupGeometry()
         //rotateAround()
@@ -288,3 +314,7 @@ extension SCNGeometrySource {
 }
 
 
+extension GameViewController: SceneControlProtocol
+{
+    func updateCamPos(_ )
+}
