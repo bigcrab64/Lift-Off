@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SliderCell" id="xhM-k5-dWk" customClass="SliderCell" customModule="Lift_Off" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xhM-k5-dWk" id="IdG-ka-a3e">
+                <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csU-8H-bCt">
+                        <rect key="frame" x="20" y="10" width="33" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wnw-Tg-91A">
+                        <rect key="frame" x="151" y="5.6666666666666679" width="231" height="34"/>
+                    </slider>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2k-b5-A5q">
+                        <rect key="frame" x="42" y="23" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="csU-8H-bCt" firstAttribute="leading" secondItem="IdG-ka-a3e" secondAttribute="leading" constant="20" symbolic="YES" id="67E-ji-seu"/>
+                    <constraint firstItem="csU-8H-bCt" firstAttribute="top" secondItem="IdG-ka-a3e" secondAttribute="top" constant="10" id="DPA-oW-Xmj"/>
+                    <constraint firstItem="wnw-Tg-91A" firstAttribute="centerY" secondItem="IdG-ka-a3e" secondAttribute="centerY" id="DhW-LJ-gYy"/>
+                    <constraint firstItem="N2k-b5-A5q" firstAttribute="leading" secondItem="IdG-ka-a3e" secondAttribute="leading" constant="42" id="Lci-HC-W44"/>
+                    <constraint firstItem="wnw-Tg-91A" firstAttribute="leading" secondItem="csU-8H-bCt" secondAttribute="trailing" constant="100" id="Y4Y-AK-AhN"/>
+                    <constraint firstItem="N2k-b5-A5q" firstAttribute="top" secondItem="IdG-ka-a3e" secondAttribute="top" constant="23" id="mJU-S1-t8S"/>
+                    <constraint firstAttribute="trailing" secondItem="wnw-Tg-91A" secondAttribute="trailing" constant="10" id="zyn-bX-NIK"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="slider" destination="wnw-Tg-91A" id="hFX-nK-s9o"/>
+                <outlet property="titleLabel" destination="csU-8H-bCt" id="qeO-TJ-0Mz"/>
+                <outlet property="valueLabel" destination="N2k-b5-A5q" id="5mh-l2-oUE"/>
+            </connections>
+            <point key="canvasLocation" x="-95.384615384615387" y="379.62085308056868"/>
+        </tableViewCell>
+    </objects>
+</document>

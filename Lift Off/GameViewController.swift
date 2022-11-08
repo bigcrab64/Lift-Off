@@ -30,7 +30,7 @@ class GameViewController: UIViewController {
         scnView.allowsCameraControl = true
         // 3
         scnView.autoenablesDefaultLighting = true
-        scnView.backgroundColor = UIColor.gray
+        scnView.backgroundColor = UIColor.black
     }
 
     func setupScene() {
@@ -133,6 +133,8 @@ class GameViewController: UIViewController {
         }
         
         let colorSource = SCNGeometrySource.init(data: colors, semantic: .color)
+        
+        
         // Textures
 
       /*  let uvList:[simd_float2] = [simd_float2(x: 0, y: 0),
@@ -229,13 +231,40 @@ class GameViewController: UIViewController {
         button.addTarget(self, action: #selector(rotateAround), for: .touchUpInside)
         self.view.addSubview(button)
     }
+    
+    
+    
+    @objc func showTable() {
+        let storyboard = UIStoryboard(name: "SceneControlVC", bundle: nil)
+        if let controller = storyboard.instantiateInitialViewController() as? SceneControlVC {
+            let bounds = self.view.bounds
+            let frame = CGRect(x: 0.5 * (bounds.width - 300), y: bounds.height - 400, width: 300, height: 300)
+            controller.configureScene(camPosition: cameraNode.position, delegate: self)
+            controller.view.frame = frame
+            self.view.addSubview(controller.view)
+            self.addChild(controller)
+            controller.didMove(toParent: self)
+        }
+    }
+    
+    func setupConttrolButton() {
+        let viewW = self.view.frame.width
+        let button = UIButton(frame: CGRect(x: 0.75 * (viewW - 200), y: 60, width: 100, height: 40))
+        button.setImage(UIImage(systemName: "gear"), for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(showTable), for: .touchUpInside)
+        self.view.addSubview(button)
+    }
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupScene()
         setupCamera()
         setupRotateButton()
+        setupConttrolButton()
         setupSegControl()
         surface = MoonPoint.buildArray()
         setupGeometry()
@@ -270,3 +299,8 @@ extension SCNGeometrySource {
 
 }
 
+extension GameViewController: SceneControlProtocol {
+    func updateCamPos(_ pos: SCNVector3) {
+        cameraNode.position = pos
+    }
+}

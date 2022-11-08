@@ -13,6 +13,8 @@
 		F707193729117B7500168EBB /* latitude10x10.csv in Resources */ = {isa = PBXBuildFile; fileRef = F707193329117B7500168EBB /* latitude10x10.csv */; };
 		F707193829117B7500168EBB /* height10x10.csv in Resources */ = {isa = PBXBuildFile; fileRef = F707193429117B7500168EBB /* height10x10.csv */; };
 		F707193A2915661F00168EBB /* SlopeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70719392915661F00168EBB /* SlopeColor.swift */; };
+		F707193C29196CBA00168EBB /* SliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F707193B29196CBA00168EBB /* SliderCell.swift */; };
+		F707193E29196D0200168EBB /* SliderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F707193D29196D0200168EBB /* SliderCell.xib */; };
 		F73659032910235C0080A8A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73659022910235C0080A8A5 /* AppDelegate.swift */; };
 		F73659072910235C0080A8A5 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73659062910235C0080A8A5 /* GameViewController.swift */; };
 		F736590A2910235C0080A8A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F73659082910235C0080A8A5 /* Main.storyboard */; };
@@ -21,6 +23,8 @@
 		F73659192910235D0080A8A5 /* Lift_OffTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73659182910235D0080A8A5 /* Lift_OffTests.swift */; };
 		F73659232910235E0080A8A5 /* Lift_OffUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73659222910235E0080A8A5 /* Lift_OffUITests.swift */; };
 		F73659252910235E0080A8A5 /* Lift_OffUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73659242910235E0080A8A5 /* Lift_OffUITestsLaunchTests.swift */; };
+		F7DC423829197133004189EA /* SceneControlVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7DC423729197133004189EA /* SceneControlVC.storyboard */; };
+		F7DC423A29197224004189EA /* SceneControlVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC423929197224004189EA /* SceneControlVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,8 @@
 		F707193329117B7500168EBB /* latitude10x10.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = latitude10x10.csv; sourceTree = "<group>"; };
 		F707193429117B7500168EBB /* height10x10.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = height10x10.csv; sourceTree = "<group>"; };
 		F70719392915661F00168EBB /* SlopeColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlopeColor.swift; sourceTree = "<group>"; };
+		F707193B29196CBA00168EBB /* SliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCell.swift; sourceTree = "<group>"; };
+		F707193D29196D0200168EBB /* SliderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderCell.xib; sourceTree = "<group>"; };
 		F73658FF2910235C0080A8A5 /* Lift Off.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lift Off.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F73659022910235C0080A8A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F73659062910235C0080A8A5 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +64,8 @@
 		F736591E2910235D0080A8A5 /* Lift OffUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lift OffUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F73659222910235E0080A8A5 /* Lift_OffUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lift_OffUITests.swift; sourceTree = "<group>"; };
 		F73659242910235E0080A8A5 /* Lift_OffUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lift_OffUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F7DC423729197133004189EA /* SceneControlVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SceneControlVC.storyboard; sourceTree = "<group>"; };
+		F7DC423929197224004189EA /* SceneControlVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneControlVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,12 +119,16 @@
 				F73659022910235C0080A8A5 /* AppDelegate.swift */,
 				F70719272911758F00168EBB /* MoonPoint.swift */,
 				F73659062910235C0080A8A5 /* GameViewController.swift */,
+				F7DC423929197224004189EA /* SceneControlVC.swift */,
+				F707193B29196CBA00168EBB /* SliderCell.swift */,
+				F707193D29196D0200168EBB /* SliderCell.xib */,
 				F70719392915661F00168EBB /* SlopeColor.swift */,
 				F707193429117B7500168EBB /* height10x10.csv */,
 				F707193329117B7500168EBB /* latitude10x10.csv */,
 				F707193129117B7500168EBB /* longitude10x10.csv */,
 				F707193229117B7500168EBB /* slope10x10.csv */,
 				F73659082910235C0080A8A5 /* Main.storyboard */,
+				F7DC423729197133004189EA /* SceneControlVC.storyboard */,
 				F736590B2910235D0080A8A5 /* Assets.xcassets */,
 				F736590D2910235D0080A8A5 /* LaunchScreen.storyboard */,
 			);
@@ -246,8 +258,10 @@
 			files = (
 				F736590F2910235D0080A8A5 /* LaunchScreen.storyboard in Resources */,
 				F707193529117B7500168EBB /* longitude10x10.csv in Resources */,
+				F707193E29196D0200168EBB /* SliderCell.xib in Resources */,
 				F736590C2910235D0080A8A5 /* Assets.xcassets in Resources */,
 				F707193729117B7500168EBB /* latitude10x10.csv in Resources */,
+				F7DC423829197133004189EA /* SceneControlVC.storyboard in Resources */,
 				F707193629117B7500168EBB /* slope10x10.csv in Resources */,
 				F707193829117B7500168EBB /* height10x10.csv in Resources */,
 				F736590A2910235C0080A8A5 /* Main.storyboard in Resources */,
@@ -276,6 +290,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F73659072910235C0080A8A5 /* GameViewController.swift in Sources */,
+				F707193C29196CBA00168EBB /* SliderCell.swift in Sources */,
+				F7DC423A29197224004189EA /* SceneControlVC.swift in Sources */,
 				F707193A2915661F00168EBB /* SlopeColor.swift in Sources */,
 				F73659032910235C0080A8A5 /* AppDelegate.swift in Sources */,
 				F70719282911758F00168EBB /* MoonPoint.swift in Sources */,
