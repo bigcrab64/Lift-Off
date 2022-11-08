@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30C93E4D29196CBE00050E66 /* SliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C93E4C29196CBE00050E66 /* SliderCell.swift */; };
+		30C93E4F29196CF700050E66 /* SliderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30C93E4E29196CF700050E66 /* SliderCell.xib */; };
+		30C93E512919714300050E66 /* SceneControlVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C93E502919714300050E66 /* SceneControlVC.storyboard */; };
+		30C93E532919722C00050E66 /* SceneControlVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C93E522919722C00050E66 /* SceneControlVC.swift */; };
 		F70719282911758F00168EBB /* MoonPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70719272911758F00168EBB /* MoonPoint.swift */; };
 		F707193529117B7500168EBB /* longitude10x10.csv in Resources */ = {isa = PBXBuildFile; fileRef = F707193129117B7500168EBB /* longitude10x10.csv */; };
 		F707193629117B7500168EBB /* slope10x10.csv in Resources */ = {isa = PBXBuildFile; fileRef = F707193229117B7500168EBB /* slope10x10.csv */; };
@@ -41,6 +45,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		30C93E4C29196CBE00050E66 /* SliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCell.swift; sourceTree = "<group>"; };
+		30C93E4E29196CF700050E66 /* SliderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderCell.xib; sourceTree = "<group>"; };
+		30C93E502919714300050E66 /* SceneControlVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SceneControlVC.storyboard; sourceTree = "<group>"; };
+		30C93E522919722C00050E66 /* SceneControlVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneControlVC.swift; sourceTree = "<group>"; };
 		F70719272911758F00168EBB /* MoonPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoonPoint.swift; sourceTree = "<group>"; };
 		F707193129117B7500168EBB /* longitude10x10.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = longitude10x10.csv; sourceTree = "<group>"; };
 		F707193229117B7500168EBB /* slope10x10.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = slope10x10.csv; sourceTree = "<group>"; };
@@ -111,6 +119,10 @@
 				F73659022910235C0080A8A5 /* AppDelegate.swift */,
 				F70719272911758F00168EBB /* MoonPoint.swift */,
 				F73659062910235C0080A8A5 /* GameViewController.swift */,
+				30C93E522919722C00050E66 /* SceneControlVC.swift */,
+				30C93E502919714300050E66 /* SceneControlVC.storyboard */,
+				30C93E4C29196CBE00050E66 /* SliderCell.swift */,
+				30C93E4E29196CF700050E66 /* SliderCell.xib */,
 				F70719392915661F00168EBB /* SlopeColor.swift */,
 				F707193429117B7500168EBB /* height10x10.csv */,
 				F707193329117B7500168EBB /* latitude10x10.csv */,
@@ -246,8 +258,10 @@
 			files = (
 				F736590F2910235D0080A8A5 /* LaunchScreen.storyboard in Resources */,
 				F707193529117B7500168EBB /* longitude10x10.csv in Resources */,
+				30C93E4F29196CF700050E66 /* SliderCell.xib in Resources */,
 				F736590C2910235D0080A8A5 /* Assets.xcassets in Resources */,
 				F707193729117B7500168EBB /* latitude10x10.csv in Resources */,
+				30C93E512919714300050E66 /* SceneControlVC.storyboard in Resources */,
 				F707193629117B7500168EBB /* slope10x10.csv in Resources */,
 				F707193829117B7500168EBB /* height10x10.csv in Resources */,
 				F736590A2910235C0080A8A5 /* Main.storyboard in Resources */,
@@ -276,9 +290,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F73659072910235C0080A8A5 /* GameViewController.swift in Sources */,
+				30C93E4D29196CBE00050E66 /* SliderCell.swift in Sources */,
 				F707193A2915661F00168EBB /* SlopeColor.swift in Sources */,
 				F73659032910235C0080A8A5 /* AppDelegate.swift in Sources */,
 				F70719282911758F00168EBB /* MoonPoint.swift in Sources */,
+				30C93E532919722C00050E66 /* SceneControlVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

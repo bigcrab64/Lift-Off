@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SliderCell" id="NPj-41-Ne4" customClass="SliderCell" customModule="Lift_Off" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NPj-41-Ne4" id="3zA-96-jRm" customClass="SliderCell" customModule="Lift_Off" customModuleProvider="target">
+                <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Inb-RG-PKX">
+                        <rect key="frame" x="98" y="5.6666666666666679" width="284" height="34"/>
+                    </slider>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GRs-PI-WRf">
+                        <rect key="frame" x="20" y="0.0" width="33" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fH8-yq-AA3">
+                        <rect key="frame" x="34" y="23" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Inb-RG-PKX" secondAttribute="trailing" constant="10" id="Cwn-af-dOh"/>
+                    <constraint firstAttribute="bottom" secondItem="fH8-yq-AA3" secondAttribute="bottom" id="EKC-Cc-vYd"/>
+                    <constraint firstItem="GRs-PI-WRf" firstAttribute="top" secondItem="3zA-96-jRm" secondAttribute="top" id="GsF-Ku-nEk"/>
+                    <constraint firstItem="fH8-yq-AA3" firstAttribute="leading" secondItem="3zA-96-jRm" secondAttribute="leading" constant="34" id="RRx-1q-KTi"/>
+                    <constraint firstItem="Inb-RG-PKX" firstAttribute="leading" secondItem="3zA-96-jRm" secondAttribute="leading" constant="100" id="ShL-ds-o43"/>
+                    <constraint firstItem="GRs-PI-WRf" firstAttribute="leading" secondItem="3zA-96-jRm" secondAttribute="leading" constant="20" symbolic="YES" id="TZa-Ub-DF7"/>
+                    <constraint firstItem="Inb-RG-PKX" firstAttribute="centerY" secondItem="3zA-96-jRm" secondAttribute="centerY" id="bTI-nm-awl"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="slider" destination="Inb-RG-PKX" id="zud-Bf-wR6"/>
+                <outlet property="titleLabel" destination="GRs-PI-WRf" id="dhQ-8g-cr0"/>
+                <outlet property="valueLabel" destination="fH8-yq-AA3" id="62J-yY-k1X"/>
+            </connections>
+            <point key="canvasLocation" x="-46.153846153846153" y="-342.65402843601896"/>
+        </tableViewCell>
+    </objects>
+</document>
