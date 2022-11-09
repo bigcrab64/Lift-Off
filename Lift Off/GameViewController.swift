@@ -28,7 +28,7 @@ class GameViewController: UIViewController {
         // 1
         scnView.showsStatistics = true
         // 2
-        scnView.allowsCameraControl = true
+        scnView.allowsCameraControl = false
         // 3
         scnView.autoenablesDefaultLighting = true
         scnView.backgroundColor = UIColor.blue
@@ -313,8 +313,11 @@ extension SCNGeometrySource {
 
 }
 
-
-extension GameViewController: SceneControlProtocol
+extension GameViewController: sceneCNTProtocol
 {
-    func updateCamPos(_ )
+    func updateCamPos(_ position: SCNVector3) {
+        cameraNode.position = position
+    }
+    
+
 }

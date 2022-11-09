@@ -8,7 +8,7 @@
 import UIKit
 import SceneKit
 
-protocol SliderCelProtocol: AnyObject
+protocol sceneCNTProtocol: AnyObject
 {
     func updateCamPos(_ position: SCNVector3)
 }
@@ -16,8 +16,10 @@ protocol SliderCelProtocol: AnyObject
 
 class sceneCNT_VC: UITableViewController {
 
-    weak var delegate : SliderCelProtocol?
-    func configure(camPosition: SCNVector3, delegate: SceneControlProtocal)
+    var camPosition = SCNVector3()
+    
+    weak var delegate : sceneCNTProtocol?
+    func configure(camPosition: SCNVector3, delegate: sceneCNTProtocol)
     {
         
     }
@@ -105,3 +107,4 @@ extension sceneCNT_VC: SliderCelProtocol{
     
     
 }
+
