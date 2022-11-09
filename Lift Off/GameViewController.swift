@@ -22,6 +22,7 @@ class GameViewController: UIViewController {
     var scnView: SCNView!
     var scnScene: SCNScene!
     var cameraNode: SCNNode!
+    var lightNode: SCNNode!
     
     func setupView() {
         scnView = self.view as? SCNView
@@ -30,7 +31,7 @@ class GameViewController: UIViewController {
         // 2
         scnView.allowsCameraControl = false
         // 3
-        scnView.autoenablesDefaultLighting = true
+        scnView.autoenablesDefaultLighting = false
         scnView.backgroundColor = UIColor.blue
     }
 
@@ -51,6 +52,24 @@ class GameViewController: UIViewController {
         cameraNode.camera? .zNear = 0
         // 4
         scnScene.rootNode.addChildNode(cameraNode)
+    }
+    
+    func setUpLights()
+    {
+        let ambientLight = SCNLight()
+        ambientLight.type = .ambient
+        ambientLight.color = UIColor(white: 0.3, alpha: 1)
+        let ambientLightNode = SCNNode()
+        ambientLightNode.light = ambientLight
+       
+        let omniLight = SCNLight()
+        omniLight.type = .omni
+        omniLight.color = UIColor.white
+        omniLight.intensity = 1000
+        lightNode = SCNNode()
+        lightNode.light = omniLight
+        lightNode.position = SCNVector3(x: -400, y: -1200, z: 0)
+        scnScene.rootNode.addChildNode(lightNode)
     }
     
     @objc func rotateCamera()
@@ -289,6 +308,7 @@ class GameViewController: UIViewController {
         setupScene()
         setupCamera()
         setupSegControl()
+        setUpLights()
         setupRotateButton()
         setupControlButton()
         surface = MoonPoint.buildArray()
