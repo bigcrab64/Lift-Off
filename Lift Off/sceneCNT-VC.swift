@@ -13,6 +13,7 @@ protocol sceneCNTProtocol: AnyObject
     func updateCamPos(_ position: SCNVector3)
     func updateNear(_ near: Float)
     func updateFar(_ far: Float)
+    func updateLightPos(_ pos: SCNVector3)
 }
 
 
@@ -21,14 +22,16 @@ class sceneCNT_VC: UITableViewController {
     var camPosition = SCNVector3()
     var near: Float = 0
     var far: Float = 0
+    var lightPos = SCNVector3()
     
     weak var delegate : sceneCNTProtocol?
-    func configure(camPosition: SCNVector3, near: Float, far: Float, delegate: sceneCNTProtocol)
+    func configure(camPosition: SCNVector3, lightPos: SCNVector3, near: Float, far: Float, delegate: sceneCNTProtocol)
     {
         self.camPosition = camPosition
         self.delegate = delegate
         self.near = near
         self.far = far
+        self.lightPos = lightPos
     }
     
     override func viewDidLoad() {
@@ -46,13 +49,14 @@ class sceneCNT_VC: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section{
         case 0: return 3
         case 1: return 2
+        case 2: return 3
         default: return 0
         }
     }
@@ -61,6 +65,7 @@ class sceneCNT_VC: UITableViewController {
         switch section{
         case 0: return "Cam Pos"
         case 1: return "Near/Far"
+        case 2: return "Light Pos"
         default: return ""
         }
     }
@@ -83,13 +88,11 @@ class sceneCNT_VC: UITableViewController {
                 return cell
             }
             case 2:    if let cell = tableView.dequeueReusableCell(withIdentifier: "sliderCell", for: indexPath) as? sliderCell{
-                cell.configure(title: "Z", value: camPosition.z, min: -400, max: 400, indexPath: indexPath, delegate: self)
+                cell.configure(title: "Z", value: camPosition.z, min: -400, max: 500, indexPath: indexPath, delegate: self)
                 return cell
             }
             default: break
             }
-            
-            
         case 1:
             switch indexPath.row{
         case 0:    if let cell = tableView.dequeueReusableCell(withIdentifier: "sliderCell", for: indexPath) as? sliderCell{
@@ -102,6 +105,22 @@ class sceneCNT_VC: UITableViewController {
             }
             default: break
         }
+        case 2:
+            switch indexPath.row{
+            case 0:    if let cell = tableView.dequeueReusableCell(withIdentifier: "sliderCell", for: indexPath) as? sliderCell{
+                cell.configure(title: "X", value: lightPos.x, min: -400, max: 400, indexPath: indexPath, delegate: self)
+                return cell
+            }
+            case 1:    if let cell = tableView.dequeueReusableCell(withIdentifier: "sliderCell", for: indexPath) as? sliderCell{
+                cell.configure(title: "Y", value: lightPos.y, min: -1500, max: 1500, indexPath: indexPath, delegate: self)
+                return cell
+            }
+            case 2:    if let cell = tableView.dequeueReusableCell(withIdentifier: "sliderCell", for: indexPath) as? sliderCell{
+                cell.configure(title: "Z", value: lightPos.z, min: -400, max: 500, indexPath: indexPath, delegate: self)
+                return cell
+            }
+            default: break
+            }
         default: break
             
         }
@@ -153,17 +172,17 @@ class sceneCNT_VC: UITableViewController {
 }
 extension sceneCNT_VC: SliderCelProtocol{
     func updateValue(_ value: Float, at indexPath: IndexPath) {
-        print(value)
+        //print(value)
         switch indexPath.section{
         case 0:
             switch indexPath.row{
-        case 0:
-            camPosition.x = value
-        case 1:
-            camPosition.y = value
-        case 2:
-            camPosition.z = value
-        default: break
+            case 0:
+                camPosition.x = value
+            case 1:
+                camPosition.y = value
+            case 2:
+                camPosition.z = value
+            default: break
         }
         case 1:
             switch indexPath.row{
@@ -175,10 +194,21 @@ extension sceneCNT_VC: SliderCelProtocol{
                 delegate?.updateFar(far)
             default: break
             }
+        case 2:
+            switch indexPath.row{
+            case 0:
+                lightPos.x = value
+            case 1:
+                lightPos.y = value
+            case 2:
+                lightPos.z = value
+            default: break
+            }
         default: break
         }
        
         delegate?.updateCamPos(camPosition)
+        delegate?.updateLightPos(lightPos)
     }
 }
 

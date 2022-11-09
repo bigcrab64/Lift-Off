@@ -275,7 +275,7 @@ class GameViewController: UIViewController {
                 let frame = CGRect(x: 0.5 * (bounds.width - 300), y: bounds.height - 400, width: 300, height: 300)
                 let useNear = cameraNode.camera?.zNear ?? 0
                 let useFar = cameraNode.camera?.zFar ?? 2000
-                controller.configure(camPosition: cameraNode.position, near: Float(useNear), far: Float(useFar), delegate: self)
+                controller.configure(camPosition: cameraNode.position, lightPos: lightNode.position, near: Float(useNear), far: Float(useFar), delegate: self)
                 controller.view.frame = frame
                 self.view.addSubview(controller.view)
                 self.addChild(controller)
@@ -359,5 +359,10 @@ extension GameViewController: sceneCNTProtocol
         cameraNode.position = position
     }
     
+    func updateLightPos(_ pos: SCNVector3){
+        lightNode.position = pos
+        print(lightNode.position)
+    }
 
 }
+
