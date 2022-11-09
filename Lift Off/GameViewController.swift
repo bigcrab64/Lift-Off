@@ -239,7 +239,11 @@ class GameViewController: UIViewController {
         if let controller = storyboard.instantiateInitialViewController() as? SceneControlVC {
             let bounds = self.view.bounds
             let frame = CGRect(x: 0.5 * (bounds.width - 300), y: bounds.height - 400, width: 300, height: 300)
-            controller.configureScene(camPosition: cameraNode.position, delegate: self)
+            
+            let useNear = cameraNode.camera?.zNear ?? 0
+            let useFar = cameraNode.camera?.zFar ?? 2000
+            
+            controller.configureScene(camPosition: cameraNode.position, near: Float(useNear), far: Float(useFar), delegate: self)
             controller.view.frame = frame
             self.view.addSubview(controller.view)
             self.addChild(controller)
@@ -300,6 +304,14 @@ extension SCNGeometrySource {
 }
 
 extension GameViewController: SceneControlProtocol {
+    func updateNear(_ near: Float) {
+        cameraNode.camera?.zNear = Double(near)
+    }
+    
+    func updateFar(_ far: Float) {
+        cameraNode.camera?.zFar = Double(far)
+    }
+    
     func updateCamPos(_ pos: SCNVector3) {
         cameraNode.position = pos
     }
