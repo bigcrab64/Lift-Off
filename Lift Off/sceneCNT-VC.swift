@@ -11,17 +11,24 @@ import SceneKit
 protocol sceneCNTProtocol: AnyObject
 {
     func updateCamPos(_ position: SCNVector3)
+    func updateNear(_ near: Float)
+    func updateFar(_ far: Float)
 }
 
 
 class sceneCNT_VC: UITableViewController {
 
     var camPosition = SCNVector3()
+    var near: Float = 0
+    var far: Float = 0
     
     weak var delegate : sceneCNTProtocol?
-    func configure(camPosition: SCNVector3, delegate: sceneCNTProtocol)
+    func configure(camPosition: SCNVector3, near: Float, far: Float, delegate: sceneCNTProtocol)
     {
-        
+        self.camPosition = camPosition
+        self.delegate = delegate
+        self.near = near
+        self.far = far
     }
     
     override func viewDidLoad() {
@@ -39,20 +46,61 @@ class sceneCNT_VC: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-  
-        return 1
+        switch section{
+        case 0: return 3
+        case 1: return 2
+        default: return 0
+        }
     }
 
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section{
+        case 0: return "Cam Pos"
+        case 1: return "Near/Far"
+        default: return ""
+        }
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "sliderCell", for: indexPath) as? sliderCell{
-            cell.configure(title: "X", value: 0, min: -400, max: 400, indexPath: indexPath, delegate: self)
+        switch indexPath.section{
+        case 0:
+            switch indexPath.row{
+            case 0:    if let cell = tableView.dequeueReusableCell(withIdentifier: "sliderCell", for: indexPath) as? sliderCell{
+                cell.configure(title: "X", value: camPosition.x, min: -400, max: 400, indexPath: indexPath, delegate: self)
+                return cell
+            }
+            case 1:    if let cell = tableView.dequeueReusableCell(withIdentifier: "sliderCell", for: indexPath) as? sliderCell{
+                cell.configure(title: "Y", value: camPosition.y, min: -1500, max: 1500, indexPath: indexPath, delegate: self)
+                return cell
+            }
+            case 2:    if let cell = tableView.dequeueReusableCell(withIdentifier: "sliderCell", for: indexPath) as? sliderCell{
+                cell.configure(title: "Z", value: camPosition.z, min: -400, max: 400, indexPath: indexPath, delegate: self)
+                return cell
+            }
+            default: break
+            }
+            
+            
+        case 1:
+            switch indexPath.row{
+        case 0:    if let cell = tableView.dequeueReusableCell(withIdentifier: "sliderCell", for: indexPath) as? sliderCell{
+            cell.configure(title: "near", value: camPosition.x, min: 0, max: 2000, indexPath: indexPath, delegate: self)
             return cell
         }
+            case 1:    if let cell = tableView.dequeueReusableCell(withIdentifier: "sliderCell", for: indexPath) as? sliderCell{
+                cell.configure(title: "far", value: camPosition.y, min: 0, max: 2000, indexPath: indexPath, delegate: self)
+                return cell
+            }
+            default: break
+        }
+        default: break
+            
+        }
+    
         // Configure the cell...
 
         return UITableViewCell()
@@ -101,10 +149,31 @@ class sceneCNT_VC: UITableViewController {
 extension sceneCNT_VC: SliderCelProtocol{
     func updateValue(_ value: Float, at indexPath: IndexPath) {
         print(value)
-        camPosition.x = value
+        switch indexPath.section{
+        case 0:
+            switch indexPath.row{
+        case 0:
+            camPosition.x = value
+        case 1:
+            camPosition.y = value
+        case 2:
+            camPosition.z = value
+        default: break
+        }
+        case 1:
+            switch indexPath.row{
+            case 0:
+                near = value
+                delegate?.updateNear(near)
+            case 1:
+                far = value
+                delegate?.updateFar(far)
+            default: break
+            }
+        default: break
+        }
+       
         delegate?.updateCamPos(camPosition)
     }
-    
-    
 }
 
