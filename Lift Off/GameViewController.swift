@@ -27,10 +27,10 @@ class GameViewController: UIViewController {
         // 1
         scnView.showsStatistics = true
         // 2
-        scnView.allowsCameraControl = true
+        scnView.allowsCameraControl = false
         // 3
         scnView.autoenablesDefaultLighting = true
-        scnView.backgroundColor = UIColor.black
+        scnView.backgroundColor = UIColor.systemPink
     }
 
     func setupScene() {
