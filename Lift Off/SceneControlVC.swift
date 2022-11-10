@@ -12,6 +12,7 @@ protocol SceneControlProtocol: AnyObject {
     func updateCamPos(_ pos: SCNVector3)
     func updateNear(_ near: Float)
     func updateFar(_ far: Float)
+    func updateLightPos(_ pos: SCNVector3)
 
 }
 
@@ -21,14 +22,16 @@ class SceneControlVC: UITableViewController {
     var camPosition = SCNVector3()
     var near: Float = 0
     var far: Float = 0
+    var lightPosition = SCNVector3()
     
     weak var delegate : SceneControlProtocol?
     
-    func configureScene(camPosition: SCNVector3, near: Float, far: Float, delegate: SceneControlProtocol) {
+    func configureScene(camPosition: SCNVector3, near: Float, far: Float, lightPosition: SCNVector3, delegate: SceneControlProtocol) {
         
         self.camPosition = camPosition
         self.near = near
         self.far = far
+        self.lightPosition = lightPosition
         self.delegate = delegate
     }
     
@@ -52,7 +55,7 @@ class SceneControlVC: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return (2)
+        return (3)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,6 +64,8 @@ class SceneControlVC: UITableViewController {
             return (3)
         case 1:
             return (2)
+        case 2:
+            return(3)
         default:
             return (0)
         }
@@ -73,6 +78,8 @@ class SceneControlVC: UITableViewController {
             return "Camera Position"
         case 1:
             return "Near and Far"
+        case 2:
+            return "Lights"
         default:
             return ":("
         }
@@ -123,6 +130,28 @@ class SceneControlVC: UITableViewController {
             default:
                 break
             }
+            
+        case 2:
+            switch indexPath.row {
+            case 0:
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "SliderCell", for: indexPath) as? SliderCell {
+                    cell.configure(title: "X", value: far, min: -400 , max: 400, indexPath: indexPath, delegate: self)
+                    return cell
+                }
+            case 1:
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "SliderCell", for: indexPath) as? SliderCell {
+                    cell.configure(title: "Y", value: far, min: -1500 , max: -500, indexPath: indexPath, delegate: self)
+                    return cell
+                }
+            case 2:
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "SliderCell", for: indexPath) as? SliderCell {
+                    cell.configure(title: "Z", value: far, min: -400 , max: 400, indexPath: indexPath, delegate: self)
+                    return cell
+                }
+            default:
+                break
+            }
+            
         default:
             break
         }
@@ -145,6 +174,7 @@ extension SceneControlVC: SliderCellProtocol {
             default:
                 break
             }
+            delegate?.updateCamPos(camPosition)
         case 1:
             switch indexPath.row{
             case 0:
@@ -156,7 +186,18 @@ extension SceneControlVC: SliderCellProtocol {
             default:
                 break
             }
-            delegate?.updateCamPos(camPosition)
+        case 2:
+            switch indexPath.row{
+            case 0:
+                lightPosition.x = value
+            case 1:
+                lightPosition.y = value
+            case 2:
+                lightPosition.z = value
+            default:
+                break
+            }
+            delegate?.updateLightPos(lightPosition)
         default:
             break
         }

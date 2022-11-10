@@ -31,8 +31,8 @@ class GameViewController: UIViewController {
         // 2
         scnView.allowsCameraControl = false
         // 3
-        scnView.autoenablesDefaultLighting = true
-        scnView.backgroundColor = UIColor.systemPink
+        scnView.autoenablesDefaultLighting = false
+        scnView.backgroundColor = UIColor.blue
     }
 
     func setupScene() {
@@ -47,7 +47,7 @@ class GameViewController: UIViewController {
         // 2
         cameraNode.camera = SCNCamera()
         // 3
-        cameraNode.position = SCNVector3(x: 200, y: -1200, z: -200)
+        cameraNode.position = SCNVector3(x: 200, y: -1200, z: 400)
         
         cameraNode.camera?.zNear = 0
         cameraNode.camera?.zFar = 1000
@@ -57,6 +57,7 @@ class GameViewController: UIViewController {
     }
     
     func setupLights () {
+        
         let ambientLight = SCNLight()
         ambientLight.type = .ambient
         ambientLight.color = UIColor(white: 0.3, alpha: 1)
@@ -80,6 +81,15 @@ class GameViewController: UIViewController {
         angles.y += 0.1
         cameraNode.eulerAngles = angles
     }
+    
+    @objc func rotateCameraOtherway () {
+        var  angles = cameraNode.eulerAngles
+        angles.y -= 0.1
+        cameraNode.eulerAngles = angles
+    }
+    
+    
+    
     
     @objc func rotateAround() {
         DispatchQueue.global(qos: .userInitiated) .async {
@@ -246,13 +256,22 @@ class GameViewController: UIViewController {
     func setupRotateButton () {
         let viewW = self.view.frame.width
         let viewH = self.view.frame.height
-        let button = UIButton(frame: CGRect(x: 0.75 * (viewW - 200), y: viewH - 750, width: 100, height: 40))
-        button.setTitle("Rotate", for: .normal)
+        let button = UIButton(frame: CGRect(x: 0.1 * (viewW - 200), y: viewH - 750, width: 50, height: 40))
+        button.setTitle("<", for: .normal)
         button.backgroundColor = .black
-        button.addTarget(self, action: #selector(rotateAround), for: .touchUpInside)
+        button.addTarget(self, action: #selector(rotateCamera), for: .touchUpInside)
         self.view.addSubview(button)
     }
     
+    func setupRotateButtonAgain () {
+        let viewW = self.view.frame.width
+        let viewH = self.view.frame.height
+        let button = UIButton(frame: CGRect(x: 1.7 * (viewW - 200), y: viewH - 750, width: 50, height: 40))
+        button.setTitle(">", for: .normal)
+        button.backgroundColor = .black
+        button.addTarget(self, action: #selector(rotateCameraOtherway), for: .touchUpInside)
+        self.view.addSubview(button)
+    }
     
     
     @objc func showTable() {
@@ -266,7 +285,8 @@ class GameViewController: UIViewController {
                 let useNear = cameraNode.camera?.zNear ?? 0
                 let useFar = cameraNode.camera?.zFar ?? 2000
                 
-                controller.configureScene(camPosition: cameraNode.position, near: Float(useNear), far: Float(useFar), delegate: self)
+                controller.configureScene(camPosition: cameraNode.position, near: Float(useNear), far: Float(useFar), lightPosition: lightNode.position, delegate: self)
+                
                 controller.view.frame = frame
                 self.view.addSubview(controller.view)
                 self.addChild(controller)
@@ -299,9 +319,10 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupScene()
-        setupLights()
         setupCamera()
+        setupLights()
         setupRotateButton()
+        setupRotateButtonAgain()
         setupConttrolButton()
         setupSegControl()
         surface = MoonPoint.buildArray()
@@ -338,6 +359,10 @@ extension SCNGeometrySource {
 }
 
 extension GameViewController: SceneControlProtocol {
+    func updateLightPos(_ pos: SCNVector3) {
+        lightNode.position = pos
+    }
+    
     func updateNear(_ near: Float) {
         cameraNode.camera?.zNear = Double(near)
     }
