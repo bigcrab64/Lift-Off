@@ -42,4 +42,22 @@ let SlopeColor: [SCNVector3] = [
     SCNVector3(x: 1, y: 0, z: 1),
     SCNVector3(x: 1, y: 0, z: 1),   // 30
     SCNVector3(x: 1, y: 0, z: 1),
+    SCNVector3(x: 1, y: 1, z: 1),
+    SCNVector3(x: 1, y: 1, z: 1),
+    SCNVector3(x: 1, y: 1, z: 1),
+    SCNVector3(x: 1, y: 1, z: 1),
+    SCNVector3(x: 1, y: 1, z: 1),
+    SCNVector3(x: 1, y: 1, z: 1),
+    SCNVector3(x: 1, y: 1, z: 1),
+    SCNVector3(x: 1, y: 1, z: 1),
+    SCNVector3(x: 1, y: 1, z: 1),
+    SCNVector3(x: 1, y: 1, z: 1),
+    SCNVector3(x: 1, y: 1, z: 1),
+    SCNVector3(x: 1, y: 1, z: 1),
+    SCNVector3(x: 1, y: 1, z: 1),
+    SCNVector3(x: 1, y: 1, z: 1),
+    SCNVector3(x: 1, y: 1, z: 1),
+    SCNVector3(x: 1, y: 1, z: 1),
+    SCNVector3(x: 1, y: 1, z: 1),
+
 ]

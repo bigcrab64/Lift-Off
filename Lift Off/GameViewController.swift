@@ -109,8 +109,8 @@ class GameViewController: UIViewController {
         
         var vertices: [SCNVector3] = []
         
-        for i in 0...9 {
-            for j in 0...9 {
+        for i in 0..<MoonPoint.csvH {
+            for j in 0..<MoonPoint.csvW {
                 vertices.append(SCNVector3(x: 40 * Float(j), y: (Float(surface[i][j].height)), z: -40 * Float(i)))
             }
         }
@@ -119,19 +119,21 @@ class GameViewController: UIViewController {
 
         // Faces
         var indices:   [Int32] = []
+        let csvHMone = MoonPoint.csvH - 1
+        let csvWMone = MoonPoint.csvW - 1
         
-        for _ in 1...(9 * 9) {
+        for _ in 1...( csvHMone * csvWMone) {
             indices.append(4)
         }
     
-        for i in 0...8 {
+        for i in 0..<csvHMone {
         
-            for j in 0...8 {
+            for j in 0..<csvWMone {
                 
-                indices.append(Int32((i * 10) + j))
-                indices.append(Int32((i * 10) + (j + 1)))
-                indices.append(Int32(((i + 1) * 10) + (j + 1)))
-                indices.append(Int32(((i + 1) * 10) + j))
+                indices.append(Int32((i * MoonPoint.csvW) + j))
+                indices.append(Int32((i * MoonPoint.csvW) + (j + 1)))
+                indices.append(Int32(((i + 1) * MoonPoint.csvW) + (j + 1)))
+                indices.append(Int32(((i + 1) * MoonPoint.csvW) + j))
             }
         }
                 
@@ -146,8 +148,8 @@ class GameViewController: UIViewController {
         var normals: [SCNVector3] = []
        
         
-        for i in 0...9 {
-            for j in 0...9 {
+        for i in 0...csvHMone {
+            for j in 0...csvWMone {
                 normals.append(surface.normalAt(x: j, y: i))
             }
         }
@@ -157,8 +159,8 @@ class GameViewController: UIViewController {
         // Colors
         var colors: [SCNVector3] = []
 
-        for i in 0...9 {
-            for j in 0...9 {
+        for i in 0...csvHMone {
+            for j in 0...csvWMone {
                 colors.append(surface.slopeColorAt(x: j, y: i))
             }
         }
@@ -221,13 +223,19 @@ class GameViewController: UIViewController {
 
         let shapeNode = SCNNode(geometry: shapeGeometry)
         shapeNode.position = SCNVector3(0, 0, 0)
+        shapeNode.name = "surface"
 
         if let root = scnView.scene?.rootNode {
             // NOTE: first node used by camera from setupCamera().
-            if root.childNodes.count < 2 {
-                root.addChildNode(shapeNode)
+         //   if root.childNodes.count < 2 {
+           //     root.addChildNode(shapeNode)
+            //} else {
+                //root.replaceChildNode(root.childNodes[1], with: shapeNode)
+         //   }
+            if let oldSurface = root.childNode(withName: "surface", recursively: false) {
+                root.replaceChildNode(oldSurface, with: shapeNode)
             } else {
-                root.replaceChildNode(root.childNodes[1], with: shapeNode)
+                root.addChildNode(shapeNode)
             }
         }
 
@@ -256,7 +264,7 @@ class GameViewController: UIViewController {
     func setupRotateButton () {
         let viewW = self.view.frame.width
         let viewH = self.view.frame.height
-        let button = UIButton(frame: CGRect(x: 0.1 * (viewW - 200), y: viewH - 750, width: 50, height: 40))
+        let button = UIButton(frame: CGRect(x: 40, y: 100, width: 50, height: 40))
         button.setTitle("<", for: .normal)
         button.backgroundColor = .black
         button.addTarget(self, action: #selector(rotateCamera), for: .touchUpInside)
@@ -266,12 +274,68 @@ class GameViewController: UIViewController {
     func setupRotateButtonAgain () {
         let viewW = self.view.frame.width
         let viewH = self.view.frame.height
-        let button = UIButton(frame: CGRect(x: 1.7 * (viewW - 200), y: viewH - 750, width: 50, height: 40))
+        let button = UIButton(frame: CGRect(x: viewW - 70, y: 100, width: 50, height: 40))
         button.setTitle(">", for: .normal)
         button.backgroundColor = .black
         button.addTarget(self, action: #selector(rotateCameraOtherway), for: .touchUpInside)
         self.view.addSubview(button)
     }
+    
+    @objc func resetPosition () {
+        cameraNode.position = SCNVector3(x: 903.291, y: -1068.1818, z: -2989.8994)
+        
+        lightNode.position = SCNVector3(x: 96.20252, y: -1041.6666, z: -244.44452)
+        cameraNode.camera?.zNear = 1
+        cameraNode.camera?.zFar = 15000
+    }
+    
+    func setupResetButton () {
+        let viewW = self.view.frame.width
+        let viewH = self.view.frame.height
+        let button = UIButton(frame: CGRect(x: 520, y: 40, width: 50, height: 40))
+        button.setTitle("reset", for: .normal)
+        button.backgroundColor = .black
+        button.addTarget(self, action: #selector(resetPosition), for: .touchUpInside)
+        self.view.addSubview(button)
+    }
+    
+    @objc func moveForward () {
+        let dX = -(10 * sin(cameraNode.eulerAngles.y))
+        let dZ = -(10 * cos(cameraNode.eulerAngles.y))
+        
+        var newCameraPosition = SCNVector3((cameraNode.position.x + dX), cameraNode.position.y, (cameraNode.position.z + dZ))
+        cameraNode.position = newCameraPosition
+    }
+    
+    func setupForwardButton() {
+        let viewW = self.view.frame.width
+        let viewH = self.view.frame.height
+        let button = UIButton(frame: CGRect(x: 100, y: viewH - 200, width: 80, height: 40))
+        button.setTitle("forward", for: .normal)
+        button.backgroundColor = .black
+        button.addTarget(self, action: #selector(moveForward), for: .touchUpInside)
+        self.view.addSubview(button)
+    }
+    
+    @objc func moveBackwards () {
+        let dX = (10 * sin(cameraNode.eulerAngles.y))
+        let dZ = (10 * cos(cameraNode.eulerAngles.y))
+        
+        var newCameraPosition = SCNVector3((cameraNode.position.x + dX), cameraNode.position.y, (cameraNode.position.z + dZ))
+        cameraNode.position = newCameraPosition
+    }
+    
+    func setupBackwardsButton() {
+        let viewW = self.view.frame.width
+        let viewH = self.view.frame.height
+        let button = UIButton(frame: CGRect(x: 100, y: viewH - 140, width: 80, height: 40))
+        button.setTitle("backwards", for: .normal)
+        button.backgroundColor = .black
+        button.addTarget(self, action: #selector(moveBackwards), for: .touchUpInside)
+        self.view.addSubview(button)
+    }
+    
+    
     
     
     @objc func showTable() {
@@ -304,9 +368,9 @@ class GameViewController: UIViewController {
         }
     }
     
-    func setupConttrolButton() {
+    func setupControlButton() {
         let viewW = self.view.frame.width
-        let button = UIButton(frame: CGRect(x: 0.75 * (viewW - 200), y: 60, width: 100, height: 40))
+        let button = UIButton(frame: CGRect(x: 500, y: 110, width: 100, height: 40))
         button.setImage(UIImage(systemName: "gear"), for: .normal)
         button.tintColor = .white
         button.addTarget(self, action: #selector(showTable), for: .touchUpInside)
@@ -321,9 +385,13 @@ class GameViewController: UIViewController {
         setupScene()
         setupCamera()
         setupLights()
+        resetPosition()
         setupRotateButton()
         setupRotateButtonAgain()
-        setupConttrolButton()
+        setupForwardButton()
+        setupBackwardsButton()
+        setupResetButton()
+        setupControlButton()
         setupSegControl()
         surface = MoonPoint.buildArray()
         setupGeometry()

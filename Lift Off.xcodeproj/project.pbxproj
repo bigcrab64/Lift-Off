@@ -25,6 +25,10 @@
 		F73659252910235E0080A8A5 /* Lift_OffUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73659242910235E0080A8A5 /* Lift_OffUITestsLaunchTests.swift */; };
 		F7DC423829197133004189EA /* SceneControlVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7DC423729197133004189EA /* SceneControlVC.storyboard */; };
 		F7DC423A29197224004189EA /* SceneControlVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC423929197224004189EA /* SceneControlVC.swift */; };
+		F7DC423F2922A7E1004189EA /* height100x100.csv in Resources */ = {isa = PBXBuildFile; fileRef = F7DC423B2922A7E1004189EA /* height100x100.csv */; };
+		F7DC42402922A7E1004189EA /* latitude100x100.csv in Resources */ = {isa = PBXBuildFile; fileRef = F7DC423C2922A7E1004189EA /* latitude100x100.csv */; };
+		F7DC42412922A7E1004189EA /* slope100x100.csv in Resources */ = {isa = PBXBuildFile; fileRef = F7DC423D2922A7E1004189EA /* slope100x100.csv */; };
+		F7DC42422922A7E1004189EA /* longitude100x100.csv in Resources */ = {isa = PBXBuildFile; fileRef = F7DC423E2922A7E1004189EA /* longitude100x100.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +70,10 @@
 		F73659242910235E0080A8A5 /* Lift_OffUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lift_OffUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F7DC423729197133004189EA /* SceneControlVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SceneControlVC.storyboard; sourceTree = "<group>"; };
 		F7DC423929197224004189EA /* SceneControlVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneControlVC.swift; sourceTree = "<group>"; };
+		F7DC423B2922A7E1004189EA /* height100x100.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = height100x100.csv; sourceTree = "<group>"; };
+		F7DC423C2922A7E1004189EA /* latitude100x100.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = latitude100x100.csv; sourceTree = "<group>"; };
+		F7DC423D2922A7E1004189EA /* slope100x100.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = slope100x100.csv; sourceTree = "<group>"; };
+		F7DC423E2922A7E1004189EA /* longitude100x100.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = longitude100x100.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +135,10 @@
 				F707193329117B7500168EBB /* latitude10x10.csv */,
 				F707193129117B7500168EBB /* longitude10x10.csv */,
 				F707193229117B7500168EBB /* slope10x10.csv */,
+				F7DC423B2922A7E1004189EA /* height100x100.csv */,
+				F7DC423C2922A7E1004189EA /* latitude100x100.csv */,
+				F7DC423E2922A7E1004189EA /* longitude100x100.csv */,
+				F7DC423D2922A7E1004189EA /* slope100x100.csv */,
 				F73659082910235C0080A8A5 /* Main.storyboard */,
 				F7DC423729197133004189EA /* SceneControlVC.storyboard */,
 				F736590B2910235D0080A8A5 /* Assets.xcassets */,
@@ -259,12 +271,16 @@
 				F736590F2910235D0080A8A5 /* LaunchScreen.storyboard in Resources */,
 				F707193529117B7500168EBB /* longitude10x10.csv in Resources */,
 				F707193E29196D0200168EBB /* SliderCell.xib in Resources */,
+				F7DC42422922A7E1004189EA /* longitude100x100.csv in Resources */,
 				F736590C2910235D0080A8A5 /* Assets.xcassets in Resources */,
 				F707193729117B7500168EBB /* latitude10x10.csv in Resources */,
+				F7DC42402922A7E1004189EA /* latitude100x100.csv in Resources */,
 				F7DC423829197133004189EA /* SceneControlVC.storyboard in Resources */,
+				F7DC423F2922A7E1004189EA /* height100x100.csv in Resources */,
 				F707193629117B7500168EBB /* slope10x10.csv in Resources */,
 				F707193829117B7500168EBB /* height10x10.csv in Resources */,
 				F736590A2910235C0080A8A5 /* Main.storyboard in Resources */,
+				F7DC42412922A7E1004189EA /* slope100x100.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

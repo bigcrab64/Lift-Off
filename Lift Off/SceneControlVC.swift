@@ -97,17 +97,17 @@ class SceneControlVC: UITableViewController {
             switch indexPath.row {
             case 0:
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SliderCell", for: indexPath) as? SliderCell {
-                    cell.configure(title: "X", value: camPosition.x, min: -200 , max: 400, indexPath: indexPath, delegate: self)
+                    cell.configure(title: "X", value: camPosition.x, min: -400 , max: 4000, indexPath: indexPath, delegate: self)
                     return cell
                 }
             case 1:
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SliderCell", for: indexPath) as? SliderCell {
-                    cell.configure(title: "Y", value: camPosition.y, min: -1400 , max: -1200, indexPath: indexPath, delegate: self)
+                    cell.configure(title: "Y", value: camPosition.y, min: -1500 , max: 0, indexPath: indexPath, delegate: self)
                     return cell
                 }
             case 2:
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SliderCell", for: indexPath) as? SliderCell {
-                    cell.configure(title: "Z", value: camPosition.z, min: -400 , max: 600,indexPath: indexPath, delegate: self)
+                    cell.configure(title: "Z", value: camPosition.z, min: -4000 , max: 1000,indexPath: indexPath, delegate: self)
                     return cell
                     
                 }
@@ -124,7 +124,7 @@ class SceneControlVC: UITableViewController {
                 }
             case 1:
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SliderCell", for: indexPath) as? SliderCell {
-                    cell.configure(title: "Far", value: far, min: 0 , max: 2000, indexPath: indexPath, delegate: self)
+                    cell.configure(title: "Far", value: far, min: 0 , max: 10000, indexPath: indexPath, delegate: self)
                     return cell
                 }
             default:

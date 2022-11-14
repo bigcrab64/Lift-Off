@@ -15,17 +15,24 @@ struct MoonPoint {
 typealias MoonSurface = [[MoonPoint]]
 
 extension MoonPoint {
-
+    static let csvW = 100
+    static let csvH = 100
+    
+    var maxDim: Int{
+        return Swift.max(MoonPoint.csvW, MoonPoint.csvH)
+    }
+    
+    
     static func buildArray() -> MoonSurface {
-        let latitude = decodeCsvNumberFile(name: "latitude10x10")
-        let longitude = decodeCsvNumberFile(name: "longitude10x10")
-        let height = decodeCsvNumberFile(name: "height10x10")
-        let slope = decodeCsvNumberFile(name: "slope10x10")
+        let latitude = decodeCsvNumberFile(name: "latitude100x100")
+        let longitude = decodeCsvNumberFile(name: "longitude100x100")
+        let height = decodeCsvNumberFile(name: "height100x100")
+        let slope = decodeCsvNumberFile(name: "slope100x100")
         // print(results)
         var points: [[MoonPoint]] = []
-        for y in 0...9 {
+        for y in 0..<csvH {
             var row: [MoonPoint] = []
-            for x in 0...9 {
+            for x in 0..<csvW {
                 row.append(MoonPoint(latitude: latitude[y][x], longitude: longitude[y][x], height: height[y][x], slope: slope[y][x]))
             }
             points.append(row)
@@ -99,7 +106,7 @@ extension MoonSurface {
         // Cross product of AxB
         let nx = sign * (a.y * b.z - a.z * b.y)
         let ny = sign * (a.z * b.x - a.x * b.z)
-        let nz = sign * (a.x * b.y - a.y * b.y)
+        let nz = sign * (a.x * b.y - a.y * b.x)
         let normal = SCNVector3(x: nx, y: ny, z: nz)
         return normal
     }
