@@ -189,13 +189,19 @@ class GameViewController: UIViewController {
 
         let shapeNode = SCNNode(geometry: shapeGeometry)
         shapeNode.position = SCNVector3(0, 0, 0)
+        shapeNode.name = "surface"
 
         if let root = scnView.scene?.rootNode {
             // NOTE: first node used by camera from setupCamera().
-            if root.childNodes.count < 2 {
-                root.addChildNode(shapeNode)
+//            if root.childNodes.count < 2 {
+//                root.addChildNode(shapeNode)
+//            } else {
+//                root.replaceChildNode(root.childNodes[1], with: shapeNode)
+//            }
+            if let oldSurface = root.childNode(withName: "surface", recursively: false) {
+                root.replaceChildNode(oldSurface, with: shapeNode)
             } else {
-                root.replaceChildNode(root.childNodes[1], with: shapeNode)
+                root.addChildNode(shapeNode)
             }
         }
 

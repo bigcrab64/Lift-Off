@@ -11,7 +11,7 @@
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SliderCell" id="NPj-41-Ne4" customClass="SliderCell" customModule="Lift_Off" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NPj-41-Ne4" id="3zA-96-jRm" customClass="SliderCell" customModule="Lift_Off" customModuleProvider="target">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NPj-41-Ne4" id="3zA-96-jRm">
                 <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>

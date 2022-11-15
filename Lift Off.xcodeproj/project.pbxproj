@@ -11,11 +11,15 @@
 		30C93E4F29196CF700050E66 /* SliderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30C93E4E29196CF700050E66 /* SliderCell.xib */; };
 		30C93E512919714300050E66 /* SceneControlVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C93E502919714300050E66 /* SceneControlVC.storyboard */; };
 		30C93E532919722C00050E66 /* SceneControlVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C93E522919722C00050E66 /* SceneControlVC.swift */; };
+		30DD7AC52923F86F00444A2B /* latitude100x100.csv in Resources */ = {isa = PBXBuildFile; fileRef = 30DD7AC12923F86F00444A2B /* latitude100x100.csv */; };
+		30DD7AC62923F86F00444A2B /* slope100x100.csv in Resources */ = {isa = PBXBuildFile; fileRef = 30DD7AC22923F86F00444A2B /* slope100x100.csv */; };
+		30DD7AC72923F86F00444A2B /* height100x100.csv in Resources */ = {isa = PBXBuildFile; fileRef = 30DD7AC32923F86F00444A2B /* height100x100.csv */; };
+		30DD7AC82923F86F00444A2B /* longitude100x100.csv in Resources */ = {isa = PBXBuildFile; fileRef = 30DD7AC42923F86F00444A2B /* longitude100x100.csv */; };
+		30DD7ACC2923FB0300444A2B /* slope.csv in Resources */ = {isa = PBXBuildFile; fileRef = 30DD7AC92923FB0300444A2B /* slope.csv */; };
+		30DD7ACD2923FB0300444A2B /* latitude.csv in Resources */ = {isa = PBXBuildFile; fileRef = 30DD7ACA2923FB0300444A2B /* latitude.csv */; };
+		30DD7ACE2923FB0300444A2B /* longitude.csv in Resources */ = {isa = PBXBuildFile; fileRef = 30DD7ACB2923FB0300444A2B /* longitude.csv */; };
+		30DD7AD02923FB0B00444A2B /* height.csv in Resources */ = {isa = PBXBuildFile; fileRef = 30DD7ACF2923FB0B00444A2B /* height.csv */; };
 		F70719282911758F00168EBB /* MoonPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70719272911758F00168EBB /* MoonPoint.swift */; };
-		F707193529117B7500168EBB /* longitude10x10.csv in Resources */ = {isa = PBXBuildFile; fileRef = F707193129117B7500168EBB /* longitude10x10.csv */; };
-		F707193629117B7500168EBB /* slope10x10.csv in Resources */ = {isa = PBXBuildFile; fileRef = F707193229117B7500168EBB /* slope10x10.csv */; };
-		F707193729117B7500168EBB /* latitude10x10.csv in Resources */ = {isa = PBXBuildFile; fileRef = F707193329117B7500168EBB /* latitude10x10.csv */; };
-		F707193829117B7500168EBB /* height10x10.csv in Resources */ = {isa = PBXBuildFile; fileRef = F707193429117B7500168EBB /* height10x10.csv */; };
 		F707193A2915661F00168EBB /* SlopeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70719392915661F00168EBB /* SlopeColor.swift */; };
 		F73659032910235C0080A8A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73659022910235C0080A8A5 /* AppDelegate.swift */; };
 		F73659072910235C0080A8A5 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73659062910235C0080A8A5 /* GameViewController.swift */; };
@@ -49,11 +53,15 @@
 		30C93E4E29196CF700050E66 /* SliderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderCell.xib; sourceTree = "<group>"; };
 		30C93E502919714300050E66 /* SceneControlVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SceneControlVC.storyboard; sourceTree = "<group>"; };
 		30C93E522919722C00050E66 /* SceneControlVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneControlVC.swift; sourceTree = "<group>"; };
+		30DD7AC12923F86F00444A2B /* latitude100x100.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = latitude100x100.csv; sourceTree = "<group>"; };
+		30DD7AC22923F86F00444A2B /* slope100x100.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = slope100x100.csv; sourceTree = "<group>"; };
+		30DD7AC32923F86F00444A2B /* height100x100.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = height100x100.csv; sourceTree = "<group>"; };
+		30DD7AC42923F86F00444A2B /* longitude100x100.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = longitude100x100.csv; sourceTree = "<group>"; };
+		30DD7AC92923FB0300444A2B /* slope.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = slope.csv; sourceTree = "<group>"; };
+		30DD7ACA2923FB0300444A2B /* latitude.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = latitude.csv; sourceTree = "<group>"; };
+		30DD7ACB2923FB0300444A2B /* longitude.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = longitude.csv; sourceTree = "<group>"; };
+		30DD7ACF2923FB0B00444A2B /* height.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = height.csv; sourceTree = "<group>"; };
 		F70719272911758F00168EBB /* MoonPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoonPoint.swift; sourceTree = "<group>"; };
-		F707193129117B7500168EBB /* longitude10x10.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = longitude10x10.csv; sourceTree = "<group>"; };
-		F707193229117B7500168EBB /* slope10x10.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = slope10x10.csv; sourceTree = "<group>"; };
-		F707193329117B7500168EBB /* latitude10x10.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = latitude10x10.csv; sourceTree = "<group>"; };
-		F707193429117B7500168EBB /* height10x10.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = height10x10.csv; sourceTree = "<group>"; };
 		F70719392915661F00168EBB /* SlopeColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlopeColor.swift; sourceTree = "<group>"; };
 		F73658FF2910235C0080A8A5 /* Lift Off.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lift Off.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F73659022910235C0080A8A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -124,10 +132,14 @@
 				30C93E4C29196CBE00050E66 /* SliderCell.swift */,
 				30C93E4E29196CF700050E66 /* SliderCell.xib */,
 				F70719392915661F00168EBB /* SlopeColor.swift */,
-				F707193429117B7500168EBB /* height10x10.csv */,
-				F707193329117B7500168EBB /* latitude10x10.csv */,
-				F707193129117B7500168EBB /* longitude10x10.csv */,
-				F707193229117B7500168EBB /* slope10x10.csv */,
+				30DD7AC32923F86F00444A2B /* height100x100.csv */,
+				30DD7AC12923F86F00444A2B /* latitude100x100.csv */,
+				30DD7AC42923F86F00444A2B /* longitude100x100.csv */,
+				30DD7AC22923F86F00444A2B /* slope100x100.csv */,
+				30DD7ACA2923FB0300444A2B /* latitude.csv */,
+				30DD7ACB2923FB0300444A2B /* longitude.csv */,
+				30DD7AC92923FB0300444A2B /* slope.csv */,
+				30DD7ACF2923FB0B00444A2B /* height.csv */,
 				F73659082910235C0080A8A5 /* Main.storyboard */,
 				F736590B2910235D0080A8A5 /* Assets.xcassets */,
 				F736590D2910235D0080A8A5 /* LaunchScreen.storyboard */,
@@ -257,13 +269,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				F736590F2910235D0080A8A5 /* LaunchScreen.storyboard in Resources */,
-				F707193529117B7500168EBB /* longitude10x10.csv in Resources */,
+				30DD7ACD2923FB0300444A2B /* latitude.csv in Resources */,
 				30C93E4F29196CF700050E66 /* SliderCell.xib in Resources */,
+				30DD7AC82923F86F00444A2B /* longitude100x100.csv in Resources */,
+				30DD7AD02923FB0B00444A2B /* height.csv in Resources */,
 				F736590C2910235D0080A8A5 /* Assets.xcassets in Resources */,
-				F707193729117B7500168EBB /* latitude10x10.csv in Resources */,
 				30C93E512919714300050E66 /* SceneControlVC.storyboard in Resources */,
-				F707193629117B7500168EBB /* slope10x10.csv in Resources */,
-				F707193829117B7500168EBB /* height10x10.csv in Resources */,
+				30DD7ACE2923FB0300444A2B /* longitude.csv in Resources */,
+				30DD7AC52923F86F00444A2B /* latitude100x100.csv in Resources */,
+				30DD7ACC2923FB0300444A2B /* slope.csv in Resources */,
+				30DD7AC62923F86F00444A2B /* slope100x100.csv in Resources */,
+				30DD7AC72923F86F00444A2B /* height100x100.csv in Resources */,
 				F736590A2910235C0080A8A5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

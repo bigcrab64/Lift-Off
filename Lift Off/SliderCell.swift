@@ -39,7 +39,7 @@ class SliderCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        // slider.addTarget(self, action: #selector(updateValue), for: .valueChanged)
+        slider.addTarget(self, action: #selector(updateValue), for: .valueChanged)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
