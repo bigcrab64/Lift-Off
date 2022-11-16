@@ -68,6 +68,33 @@ extension MoonPoint {
 
 extension MoonSurface {
 
+    func heightAt(x: Float, z: Float) -> Float {
+        let scale = Float(40.0)
+        let xDivided = x / scale
+        let zDivided = z / -scale
+        let xZero = Int(xDivided)
+        let xOne = Int(xDivided + 1)
+        let zZero = Int(zDivided)
+        let zOne = Int(zDivided + 1)
+        
+        
+        let yZero = (self[zZero][xZero].height)
+        let yOne = (self[zZero][xOne].height)
+    
+        let y = Float(yZero) + (xDivided - Float(xZero)) * (Float(yOne - yZero))
+   
+        let yZeroTop = (self[zOne][xZero].height)
+        let yOneTop = (self[zOne][xOne].height)
+                            
+        let yTop = Float(yZeroTop) + (xDivided - Float(xZero)) * (Float(yOneTop - yZeroTop))
+        
+        let yMid = Float(y) + (zDivided - Float(zZero)) * (Float(yTop - y))
+
+                         
+                         
+        return Float(yMid)
+    }
+    
     func point3dAt(x: Int, y: Int) -> SCNVector3 {
         let scale: Float = 40.0
         let point = SCNVector3(x: scale * Float(x), y: Float(self[y][x].height), z: -scale * Float(y))
@@ -84,12 +111,12 @@ extension MoonSurface {
         var sign: Float = 1
         var x2 = x + 1
         var y2 = y + 1
-        if x >= 9 {
+        if x >= MoonPoint.csvW - 1{
             x2 = x - 1
             sign *= -1
         }
         
-        if y >= 9 {
+        if y >= MoonPoint.csvH - 1 {
             y2 = y - 1
             sign *= -1
         }

@@ -264,7 +264,7 @@ class GameViewController: UIViewController {
     func setupRotateButton () {
         let viewW = self.view.frame.width
         let viewH = self.view.frame.height
-        let button = UIButton(frame: CGRect(x: 40, y: 100, width: 50, height: 40))
+        let button = UIButton(frame: CGRect(x: 70, y: 100, width: 50, height: 40))
         button.setTitle("<", for: .normal)
         button.backgroundColor = .black
         button.addTarget(self, action: #selector(rotateCamera), for: .touchUpInside)
@@ -292,7 +292,7 @@ class GameViewController: UIViewController {
     func setupResetButton () {
         let viewW = self.view.frame.width
         let viewH = self.view.frame.height
-        let button = UIButton(frame: CGRect(x: 520, y: 40, width: 50, height: 40))
+        let button = UIButton(frame: CGRect(x: 340, y: 40, width: 50, height: 40))
         button.setTitle("reset", for: .normal)
         button.backgroundColor = .black
         button.addTarget(self, action: #selector(resetPosition), for: .touchUpInside)
@@ -302,9 +302,11 @@ class GameViewController: UIViewController {
     @objc func moveForward () {
         let dX = -(10 * sin(cameraNode.eulerAngles.y))
         let dZ = -(10 * cos(cameraNode.eulerAngles.y))
+        let newY = surface.heightAt(x: cameraNode.position.x, z: cameraNode.position.z)
         
-        var newCameraPosition = SCNVector3((cameraNode.position.x + dX), cameraNode.position.y, (cameraNode.position.z + dZ))
+        var newCameraPosition = SCNVector3((cameraNode.position.x + dX), newY + 5, (cameraNode.position.z + dZ))
         cameraNode.position = newCameraPosition
+        print(cameraNode.position)
     }
     
     func setupForwardButton() {
@@ -328,7 +330,7 @@ class GameViewController: UIViewController {
     func setupBackwardsButton() {
         let viewW = self.view.frame.width
         let viewH = self.view.frame.height
-        let button = UIButton(frame: CGRect(x: 100, y: viewH - 140, width: 80, height: 40))
+        let button = UIButton(frame: CGRect(x: 100, y: viewH - 140, width: 90, height: 40))
         button.setTitle("backwards", for: .normal)
         button.backgroundColor = .black
         button.addTarget(self, action: #selector(moveBackwards), for: .touchUpInside)
@@ -370,7 +372,7 @@ class GameViewController: UIViewController {
     
     func setupControlButton() {
         let viewW = self.view.frame.width
-        let button = UIButton(frame: CGRect(x: 500, y: 110, width: 100, height: 40))
+        let button = UIButton(frame: CGRect(x: 320, y: 110, width: 100, height: 40))
         button.setImage(UIImage(systemName: "gear"), for: .normal)
         button.tintColor = .white
         button.addTarget(self, action: #selector(showTable), for: .touchUpInside)
