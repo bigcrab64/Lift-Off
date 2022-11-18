@@ -306,7 +306,6 @@ class GameViewController: UIViewController {
         
         var newCameraPosition = SCNVector3((cameraNode.position.x + dX), newY + 5, (cameraNode.position.z + dZ))
         cameraNode.position = newCameraPosition
-        print(cameraNode.position)
     }
     
     func setupForwardButton() {

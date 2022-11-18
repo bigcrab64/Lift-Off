@@ -135,17 +135,17 @@ class SceneControlVC: UITableViewController {
             switch indexPath.row {
             case 0:
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SliderCell", for: indexPath) as? SliderCell {
-                    cell.configure(title: "X", value: far, min: -400 , max: 400, indexPath: indexPath, delegate: self)
+                    cell.configure(title: "X", value: far, min: -400 , max: 4000, indexPath: indexPath, delegate: self)
                     return cell
                 }
             case 1:
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SliderCell", for: indexPath) as? SliderCell {
-                    cell.configure(title: "Y", value: far, min: -1500 , max: -500, indexPath: indexPath, delegate: self)
+                    cell.configure(title: "Y", value: far, min: -1500 , max: 0, indexPath: indexPath, delegate: self)
                     return cell
                 }
             case 2:
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SliderCell", for: indexPath) as? SliderCell {
-                    cell.configure(title: "Z", value: far, min: -400 , max: 400, indexPath: indexPath, delegate: self)
+                    cell.configure(title: "Z", value: far, min: -4000 , max: 1000, indexPath: indexPath, delegate: self)
                     return cell
                 }
             default:
