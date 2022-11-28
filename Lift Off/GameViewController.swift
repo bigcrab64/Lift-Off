@@ -15,22 +15,24 @@ import SceneKit
 class GameViewController: UIViewController {
 
     var selectedSegment = 0
+    var sceneControl: sceneCNT_VC?
     
     var surface: MoonSurface = []
     
     var scnView: SCNView!
     var scnScene: SCNScene!
     var cameraNode: SCNNode!
+    var lightNode: SCNNode!
     
     func setupView() {
         scnView = self.view as? SCNView
         // 1
         scnView.showsStatistics = true
         // 2
-        scnView.allowsCameraControl = true
+        scnView.allowsCameraControl = false
         // 3
-        scnView.autoenablesDefaultLighting = true
-        scnView.backgroundColor = UIColor.gray
+        scnView.autoenablesDefaultLighting = false
+        scnView.backgroundColor = UIColor.blue
     }
 
     func setupScene() {
@@ -45,9 +47,48 @@ class GameViewController: UIViewController {
         // 2
         cameraNode.camera = SCNCamera()
         // 3
-        cameraNode.position = SCNVector3(x: 200, y: 100, z: 200)
+        cameraNode.position = SCNVector3(x: 200, y: -1300, z: -200)
+        cameraNode.camera?.zFar = 2000
+        cameraNode.camera? .zNear = 0
         // 4
         scnScene.rootNode.addChildNode(cameraNode)
+    }
+    
+    func setUpLights()
+    {
+        let ambientLight = SCNLight()
+        ambientLight.type = .ambient
+        ambientLight.color = UIColor(white: 0.3, alpha: 1)
+        let ambientLightNode = SCNNode()
+        ambientLightNode.light = ambientLight
+       
+        let omniLight = SCNLight()
+        omniLight.type = .omni
+        omniLight.color = UIColor.white
+        omniLight.intensity = 1000
+        lightNode = SCNNode()
+        lightNode.light = omniLight
+        lightNode.position = SCNVector3(x: -400, y: -1200, z: 0)
+        scnScene.rootNode.addChildNode(lightNode)
+    }
+    
+    @objc func rotateCamera()
+    {
+        var angles = cameraNode.eulerAngles
+        angles.y += 0.1
+        cameraNode.eulerAngles = angles
+    }
+    
+    func rotateAround()
+    {
+        DispatchQueue.global(qos: .userInitiated).async {
+            for _ in 0...1000{
+                DispatchQueue.main.async {
+                    self.rotateCamera()
+                }
+                usleep(100000)
+            }
+        }
     }
 
     func setupGeometry() {
@@ -57,7 +98,8 @@ class GameViewController: UIViewController {
         
         for i in 0...9 {
             for j in 0...9 {
-                vertices.append(SCNVector3(x: 40 * Float(j), y: 0, z: 40 * Float(i)))
+                vertices.append(surface.point3dAt(x: j, y: i))
+               // vertices.append(SCNVector3(x: 40 * Float(j), y: Float(surface[i][j].height), z: 40 * Float(i)))
             }
         }
         
@@ -85,7 +127,7 @@ class GameViewController: UIViewController {
         
         var indices:   [Int32] = []
         
-        for _ in 0...(9 * 9) {
+        for _ in 0..<81 {
             indices.append(4)
         }
         for i in 0...8 {
@@ -107,32 +149,41 @@ class GameViewController: UIViewController {
                                               bytesPerIndex: MemoryLayout<Int32>.size)
 
         // Normals
-        let normals: [SCNVector3] = [SCNVector3(0, 0, 1),
-                                     SCNVector3(0, 0, 1),
-                                     SCNVector3(0, 0, 1),
-                                     SCNVector3(0, 0, 1),
-                                     SCNVector3(0, 0, 1),
-                                     SCNVector3(0, 0, 1)]
+   //     let normals: [SCNVector3] = [SCNVector3(0, 0, 1),
+   //                                  SCNVector3(0, 0, 1),
+  //                                   SCNVector3(0, 0, 1),
+  //                                   SCNVector3(0, 0, 1),
+  //                                   SCNVector3(0, 0, 1),
+ //                                    SCNVector3(0, 0, 1)]
+        var normals:[SCNVector3] = []
+        
+        for i in 0...9 {
+            for j in 0...9{
+                normals.append(surface.normalAt(x: j, y: i))
+            }
+        }
+        
 
         let normalSource = SCNGeometrySource.init(data: normals, semantic: .normal)
 
         // Colors
-        let colors: [SCNVector3] = [SCNVector3(1, 0, 0.3),//bottom vertices
-                                    SCNVector3(0.5, 0, 0.5),
-                                    SCNVector3(0, 0, 1),
-                                    SCNVector3(1, 0, 0.3),//top vertices
-                                    SCNVector3(0.5, 0, 0.5),
-                                    SCNVector3(0, 0, 1)]
-
+        var colors: [SCNVector3] = []
+        
+        for i in 0...9 {
+            for j in 0...9{
+                colors.append(surface.slopeColorAt(x: j, y: i))
+            }
+        }
         let colorSource = SCNGeometrySource.init(data: colors, semantic: .color)
 
         // Textures
 
         let uvList:[simd_float2] = [simd_float2(x: 0, y: 0),
-                                    simd_float2(x: 0.5, y: 0),
+                                    simd_float2(x: 0.01, y: 0),
                                     simd_float2(x: 1, y: 0),
                                     simd_float2(x: 0, y: 1),
-                                    simd_float2(x: 0.5, y: 1),
+                                    simd_float2(x: 0.01, y: 1),
+                                    simd_float2(x: 0.01, y: 0),
                                       simd_float2(x: 1, y: 1)]
 
         //fill UV list with texture coords
@@ -204,6 +255,52 @@ class GameViewController: UIViewController {
         segCtrl.addTarget(self, action: #selector(segmentChanged(sender:)), for: .valueChanged)
         self.view.addSubview(segCtrl)
     }
+    func setupRotateButton()
+    {
+        let viewW = self.view.frame.width
+        let viewH = self.view.frame.height
+        var button = UIButton(type: .custom)
+        button = UIButton(frame: CGRect(x: 0.5 * (viewW - 200), y: viewH - 200, width: 200, height: 40))
+        button.setTitle("rotate", for: .normal)
+        button.backgroundColor = .white
+        button.addTarget(self, action: #selector(rotateCamera), for: .touchUpInside)
+    }
+    
+    @objc func showControls()
+    {
+        if sceneControl == nil{
+        let storyboard = UIStoryboard(name: "sceneCNT-VC", bundle: nil)
+            if let controller = storyboard.instantiateInitialViewController() as? sceneCNT_VC{
+                let bounds = self.view.bounds
+                let frame = CGRect(x: 0.5 * (bounds.width - 300), y: bounds.height - 400, width: 300, height: 300)
+                let useNear = cameraNode.camera?.zNear ?? 0
+                let useFar = cameraNode.camera?.zFar ?? 2000
+                controller.configure(camPosition: cameraNode.position, lightPos: lightNode.position, near: Float(useNear), far: Float(useFar), delegate: self)
+                controller.view.frame = frame
+                self.view.addSubview(controller.view)
+                self.addChild(controller)
+                controller.didMove(toParent: self)
+                sceneControl = controller
+            }
+            }else{
+                sceneControl?.willMove(toParent: nil)
+                sceneControl?.view.removeFromSuperview()
+                sceneControl?.removeFromParent()
+                sceneControl = nil
+            
+        }
+    }
+    
+    func setupControlButton()
+    {
+        let viewW = self.view.frame.width
+       //let viewH = self.view.frame.height
+        let button = UIButton(frame: CGRect(x: viewW - 60, y: 60, width: 44, height: 44))
+        button.setImage(UIImage(systemName: "gear"), for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(showControls), for: .touchUpInside)
+        self.view.addSubview(button)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -211,8 +308,12 @@ class GameViewController: UIViewController {
         setupScene()
         setupCamera()
         setupSegControl()
+        setUpLights()
+        setupRotateButton()
+        setupControlButton()
         surface = MoonPoint.buildArray()
         setupGeometry()
+        //rotateAround()
     }
 
     override var prefersStatusBarHidden: Bool {
@@ -240,6 +341,27 @@ extension SCNGeometrySource {
                   bytesPerComponent: MemoryLayout<Float>.size,
                   dataOffset: 0,
                   dataStride: MemoryLayout<SCNVector3>.size)
+    }
+
+}
+
+extension GameViewController: sceneCNTProtocol
+{
+    func updateNear(_ near: Float) {
+        cameraNode.camera?.zNear = Double(near)
+    }
+    
+    func updateFar(_ far: Float) {
+        cameraNode.camera?.zFar = Double(far)
+    }
+    
+    func updateCamPos(_ position: SCNVector3) {
+        cameraNode.position = position
+    }
+    
+    func updateLightPos(_ pos: SCNVector3){
+        lightNode.position = pos
+        print(lightNode.position)
     }
 
 }

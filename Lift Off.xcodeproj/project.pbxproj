@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		796FC97E29196CBA0041E1F2 /* sliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796FC97D29196CBA0041E1F2 /* sliderCell.swift */; };
+		796FC98029196CFB0041E1F2 /* sliderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 796FC97F29196CFB0041E1F2 /* sliderCell.xib */; };
+		796FC9822919713E0041E1F2 /* sceneCNT-VC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 796FC9812919713E0041E1F2 /* sceneCNT-VC.storyboard */; };
+		796FC986291972720041E1F2 /* sceneCNT-VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796FC985291972720041E1F2 /* sceneCNT-VC.swift */; };
+		79EEF2052915666100F0B37D /* SlopeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EEF2042915666100F0B37D /* SlopeColor.swift */; };
 		F70719282911758F00168EBB /* MoonPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70719272911758F00168EBB /* MoonPoint.swift */; };
 		F707193529117B7500168EBB /* longitude10x10.csv in Resources */ = {isa = PBXBuildFile; fileRef = F707193129117B7500168EBB /* longitude10x10.csv */; };
 		F707193629117B7500168EBB /* slope10x10.csv in Resources */ = {isa = PBXBuildFile; fileRef = F707193229117B7500168EBB /* slope10x10.csv */; };
@@ -40,6 +45,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		796FC97D29196CBA0041E1F2 /* sliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sliderCell.swift; sourceTree = "<group>"; };
+		796FC97F29196CFB0041E1F2 /* sliderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = sliderCell.xib; sourceTree = "<group>"; };
+		796FC9812919713E0041E1F2 /* sceneCNT-VC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "sceneCNT-VC.storyboard"; sourceTree = "<group>"; };
+		796FC985291972720041E1F2 /* sceneCNT-VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "sceneCNT-VC.swift"; sourceTree = "<group>"; };
+		79EEF2042915666100F0B37D /* SlopeColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlopeColor.swift; sourceTree = "<group>"; };
 		F70719272911758F00168EBB /* MoonPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoonPoint.swift; sourceTree = "<group>"; };
 		F707193129117B7500168EBB /* longitude10x10.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = longitude10x10.csv; sourceTree = "<group>"; };
 		F707193229117B7500168EBB /* slope10x10.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = slope10x10.csv; sourceTree = "<group>"; };
@@ -109,11 +119,16 @@
 				F73659022910235C0080A8A5 /* AppDelegate.swift */,
 				F70719272911758F00168EBB /* MoonPoint.swift */,
 				F73659062910235C0080A8A5 /* GameViewController.swift */,
+				796FC985291972720041E1F2 /* sceneCNT-VC.swift */,
+				796FC97D29196CBA0041E1F2 /* sliderCell.swift */,
+				796FC97F29196CFB0041E1F2 /* sliderCell.xib */,
 				F707193429117B7500168EBB /* height10x10.csv */,
 				F707193329117B7500168EBB /* latitude10x10.csv */,
 				F707193129117B7500168EBB /* longitude10x10.csv */,
 				F707193229117B7500168EBB /* slope10x10.csv */,
+				79EEF2042915666100F0B37D /* SlopeColor.swift */,
 				F73659082910235C0080A8A5 /* Main.storyboard */,
+				796FC9812919713E0041E1F2 /* sceneCNT-VC.storyboard */,
 				F736590B2910235D0080A8A5 /* Assets.xcassets */,
 				F736590D2910235D0080A8A5 /* LaunchScreen.storyboard */,
 			);
@@ -243,6 +258,8 @@
 			files = (
 				F736590F2910235D0080A8A5 /* LaunchScreen.storyboard in Resources */,
 				F707193529117B7500168EBB /* longitude10x10.csv in Resources */,
+				796FC98029196CFB0041E1F2 /* sliderCell.xib in Resources */,
+				796FC9822919713E0041E1F2 /* sceneCNT-VC.storyboard in Resources */,
 				F736590C2910235D0080A8A5 /* Assets.xcassets in Resources */,
 				F707193729117B7500168EBB /* latitude10x10.csv in Resources */,
 				F707193629117B7500168EBB /* slope10x10.csv in Resources */,
@@ -273,6 +290,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F73659072910235C0080A8A5 /* GameViewController.swift in Sources */,
+				796FC97E29196CBA0041E1F2 /* sliderCell.swift in Sources */,
+				79EEF2052915666100F0B37D /* SlopeColor.swift in Sources */,
+				796FC986291972720041E1F2 /* sceneCNT-VC.swift in Sources */,
 				F73659032910235C0080A8A5 /* AppDelegate.swift in Sources */,
 				F70719282911758F00168EBB /* MoonPoint.swift in Sources */,
 			);
