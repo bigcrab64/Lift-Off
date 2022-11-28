@@ -262,8 +262,6 @@ class GameViewController: UIViewController {
     }
     
     func setupRotateButton () {
-        let viewW = self.view.frame.width
-        let viewH = self.view.frame.height
         let button = UIButton(frame: CGRect(x: 70, y: 100, width: 50, height: 40))
         button.setTitle("<", for: .normal)
         button.backgroundColor = .black
@@ -273,7 +271,6 @@ class GameViewController: UIViewController {
     
     func setupRotateButtonAgain () {
         let viewW = self.view.frame.width
-        let viewH = self.view.frame.height
         let button = UIButton(frame: CGRect(x: viewW - 70, y: 100, width: 50, height: 40))
         button.setTitle(">", for: .normal)
         button.backgroundColor = .black
@@ -290,8 +287,6 @@ class GameViewController: UIViewController {
     }
     
     func setupResetButton () {
-        let viewW = self.view.frame.width
-        let viewH = self.view.frame.height
         let button = UIButton(frame: CGRect(x: 340, y: 40, width: 50, height: 40))
         button.setTitle("reset", for: .normal)
         button.backgroundColor = .black
@@ -309,7 +304,6 @@ class GameViewController: UIViewController {
     }
     
     func setupForwardButton() {
-        let viewW = self.view.frame.width
         let viewH = self.view.frame.height
         let button = UIButton(frame: CGRect(x: 100, y: viewH - 200, width: 80, height: 40))
         button.setTitle("forward", for: .normal)
@@ -327,7 +321,6 @@ class GameViewController: UIViewController {
     }
     
     func setupBackwardsButton() {
-        let viewW = self.view.frame.width
         let viewH = self.view.frame.height
         let button = UIButton(frame: CGRect(x: 100, y: viewH - 140, width: 90, height: 40))
         button.setTitle("backwards", for: .normal)

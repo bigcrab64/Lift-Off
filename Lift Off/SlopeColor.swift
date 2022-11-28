@@ -11,7 +11,6 @@ import SceneKit
 let SlopeColor: [SCNVector3] = [
     // Red, Green, Blue
     
-    
     SCNVector3(x: 1, y: 0, z: 1),   // 0
     SCNVector3(x: 1, y: 0, z: 1),
     SCNVector3(x: 1, y: 0, z: 1),
