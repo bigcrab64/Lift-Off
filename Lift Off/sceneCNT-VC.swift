@@ -14,6 +14,7 @@ protocol sceneCNTProtocol: AnyObject
     func updateNear(_ near: Float)
     func updateFar(_ far: Float)
     func updateLightPos(_ pos: SCNVector3)
+    func updateCamRotation(_ rot: SCNVector3)
 }
 
 
@@ -23,15 +24,17 @@ class sceneCNT_VC: UITableViewController {
     var near: Float = 0
     var far: Float = 0
     var lightPos = SCNVector3()
+    var camRot = SCNVector3()
     
     weak var delegate : sceneCNTProtocol?
-    func configure(camPosition: SCNVector3, lightPos: SCNVector3, near: Float, far: Float, delegate: sceneCNTProtocol)
+    func configure(camPosition: SCNVector3, camRot: SCNVector3, lightPos: SCNVector3, near: Float, far: Float, delegate: sceneCNTProtocol)
     {
         self.camPosition = camPosition
         self.delegate = delegate
         self.near = near
         self.far = far
         self.lightPos = lightPos
+        self.camRot = camRot
     }
     
     override func viewDidLoad() {
@@ -44,7 +47,7 @@ class sceneCNT_VC: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,6 +55,7 @@ class sceneCNT_VC: UITableViewController {
         case 0: return 3
         case 1: return 2
         case 2: return 3
+        case 3: return 3
         default: return 0
         }
     }
@@ -61,6 +65,7 @@ class sceneCNT_VC: UITableViewController {
         case 0: return "Cam Pos"
         case 1: return "Near/Far"
         case 2: return "Light Pos"
+        case 3: return "Cam Rot"
         default: return ""
         }
     }
@@ -112,6 +117,22 @@ class sceneCNT_VC: UITableViewController {
             }
             case 2:    if let cell = tableView.dequeueReusableCell(withIdentifier: "sliderCell", for: indexPath) as? sliderCell{
                 cell.configure(title: "Z", value: lightPos.z, min: -400, max: 500, indexPath: indexPath, delegate: self)
+                return cell
+            }
+            default: break
+            }
+        case 3:
+            switch indexPath.row{
+            case 0:    if let cell = tableView.dequeueReusableCell(withIdentifier: "sliderCell", for: indexPath) as? sliderCell{
+                cell.configure(title: "X", value: camRot.x, min: -2 * .pi, max: 2 * .pi, indexPath: indexPath, delegate: self)
+                return cell
+            }
+            case 1:    if let cell = tableView.dequeueReusableCell(withIdentifier: "sliderCell", for: indexPath) as? sliderCell{
+                cell.configure(title: "Y", value: camRot.y, min: -2 * .pi, max: 2 * .pi, indexPath: indexPath, delegate: self)
+                return cell
+            }
+            case 2:    if let cell = tableView.dequeueReusableCell(withIdentifier: "sliderCell", for: indexPath) as? sliderCell{
+                cell.configure(title: "Z", value: camRot.z, min: -2 * .pi, max: 2 * .pi, indexPath: indexPath, delegate: self)
                 return cell
             }
             default: break
@@ -174,11 +195,22 @@ extension sceneCNT_VC: SliderCelProtocol{
                 lightPos.z = value
             default: break
             }
+        case 3:
+            switch indexPath.row{
+            case 0:
+                camRot.x = value
+            case 1:
+                camRot.y = value
+            case 2:
+                camRot.z = value
+            default: break
+            }
         default: break
         }
        
         delegate?.updateCamPos(camPosition)
         delegate?.updateLightPos(lightPos)
+        delegate?.updateCamRotation(camRot)
     }
 }
 

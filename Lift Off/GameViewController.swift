@@ -8,6 +8,7 @@
 import UIKit
 import QuartzCore
 import SceneKit
+import ARKit
 
 // NOTE: this provides one triangle with different vertices of red/green/blue.
 //       Selector allows looking at texture mapping.
@@ -23,6 +24,8 @@ class GameViewController: UIViewController {
     var scnScene: SCNScene!
     var cameraNode: SCNNode!
     var lightNode: SCNNode!
+    
+    var b: SCNVector4!
     
     func setupView() {
         scnView = self.view as? SCNView
@@ -61,6 +64,7 @@ class GameViewController: UIViewController {
         ambientLight.color = UIColor(white: 0.3, alpha: 1)
         let ambientLightNode = SCNNode()
         ambientLightNode.light = ambientLight
+        scnScene.rootNode.addChildNode(ambientLightNode)
        
         let omniLight = SCNLight()
         omniLight.type = .omni
@@ -79,7 +83,14 @@ class GameViewController: UIViewController {
         cameraNode.eulerAngles = angles
     }
     
-    func rotateAround()
+    @objc func rotateOther()
+    {
+        var angles = cameraNode.eulerAngles
+        angles.y -= 0.1
+        cameraNode.eulerAngles = angles
+    }
+    
+    @objc func rotateAround()
     {
         DispatchQueue.global(qos: .userInitiated).async {
             for _ in 0...1000{
@@ -94,10 +105,11 @@ class GameViewController: UIViewController {
     func setupGeometry() {
         //Vertices
         
+        
         var vertices: [SCNVector3] = []
         
-        for i in 0...9 {
-            for j in 0...9 {
+        for i in 0..<MoonPoint.csvH {
+            for j in 0..<MoonPoint.csvW {
                 vertices.append(surface.point3dAt(x: j, y: i))
                // vertices.append(SCNVector3(x: 40 * Float(j), y: Float(surface[i][j].height), z: 40 * Float(i)))
             }
@@ -105,38 +117,26 @@ class GameViewController: UIViewController {
         
         
         
-      /*
-        let vertices: [SCNVector3] = [SCNVector3(0, 0, 0),    //0
-                                      SCNVector3(40, 0, 0),   //1
-                                      SCNVector3(80, 0, 0),   //2
-                                      
-                                      SCNVector3(0, 0, -40),  //3
-                                      SCNVector3(40, 0, -40), //4
-                                      SCNVector3(80, 0, -40), //5
-                                      
-                                      SCNVector3(0, 0, -80),  //6
-                                      SCNVector3(40, 0, -80), //7
-                                      SCNVector3(80, 1, -80)] // 8
-        */
+
         
 
         let vertexSource = SCNGeometrySource.init(data: vertices, semantic: .vertex)
 
         // Faces
-        //let indices: [Int32] = [4,4,4,4, 0,1,4,3, 1,2,5,4, 3,4,7,6, 4,5,8,7  ]
-        
         var indices:   [Int32] = []
+        let csvHMone = MoonPoint.csvH - 1
+        let csvWMone = MoonPoint.csvW - 1
         
-        for _ in 0..<81 {
+        for _ in 1...( csvHMone * csvWMone){
             indices.append(4)
         }
-        for i in 0...8 {
+        for i in 0..<MoonPoint.csvH {
         
-            for j in 0...8 {
-                indices.append(Int32((i * 10) + j))
-                indices.append(Int32((i * 10) + j + 1))
-                indices.append(Int32(((i + 1) * 10) + j + 1))
-                indices.append(Int32(((i + 1) * 10) + j))
+            for j in 0..<MoonPoint.csvW {
+                indices.append(Int32((i * MoonPoint.csvH) + j))
+                indices.append(Int32((i * MoonPoint.csvH) + j + 1))
+                indices.append(Int32(((i + 1) * MoonPoint.csvW) + j + 1))
+                indices.append(Int32(((i + 1) * MoonPoint.csvW) + j))
             }
         }
                 
@@ -157,8 +157,8 @@ class GameViewController: UIViewController {
  //                                    SCNVector3(0, 0, 1)]
         var normals:[SCNVector3] = []
         
-        for i in 0...9 {
-            for j in 0...9{
+        for i in 0..<MoonPoint.csvH {
+            for j in 0..<MoonPoint.csvW{
                 normals.append(surface.normalAt(x: j, y: i))
             }
         }
@@ -169,8 +169,8 @@ class GameViewController: UIViewController {
         // Colors
         var colors: [SCNVector3] = []
         
-        for i in 0...9 {
-            for j in 0...9{
+        for i in 0..<MoonPoint.csvH {
+            for j in 0..<MoonPoint.csvW{
                 colors.append(surface.slopeColorAt(x: j, y: i))
             }
         }
@@ -227,10 +227,15 @@ class GameViewController: UIViewController {
 
         if let root = scnView.scene?.rootNode {
             // NOTE: first node used by camera from setupCamera().
-            if root.childNodes.count < 2 {
+          //  if root.childNodes.count < 2 {
+           //     root.addChildNode(shapeNode)
+            //} else {
+            //    root.replaceChildNode(root.childNodes[1], with: shapeNode)
+           // }
+            if let oldSurface = root.childNode(withName: "surface", recursively: false){
+                root.replaceChildNode(oldSurface, with: shapeNode)
+            }else{
                 root.addChildNode(shapeNode)
-            } else {
-                root.replaceChildNode(root.childNodes[1], with: shapeNode)
             }
         }
 
@@ -257,13 +262,48 @@ class GameViewController: UIViewController {
     }
     func setupRotateButton()
     {
+        let button = UIButton(frame: CGRect(x:70, y: 100, width: 50, height: 40))
+        button.setTitle("<", for: .normal)
+        button.backgroundColor = .black
+        button.addTarget(self, action: #selector(rotateCamera), for: .touchUpInside)
+        self.view.addSubview(button)
+    }
+    func setupRotateButtonAgain()
+    {
+        let viewW = self.view.frame.width
+        let button = UIButton(frame: CGRect(x: viewW - 70, y: 100, width: 50, height: 40))
+        button.setTitle(">", for: .normal)
+        button.backgroundColor = .black
+        button.addTarget(self, action: #selector(rotateAround), for: .touchUpInside)
+        self.view.addSubview(button)
+    }
+    
+    func setupReset()
+    {
+        cameraNode.position = SCNVector3(x: 903.29, y: -1068.18, z:-2989.89)
+        lightNode.position = SCNVector3(x: 96.20, y: -1041.66, z:-244.44)
+        cameraNode.camera?.zNear = 1
+        cameraNode.camera?.zFar = 15000
+    }
+    func setupMoveButton()
+    {
         let viewW = self.view.frame.width
         let viewH = self.view.frame.height
         var button = UIButton(type: .custom)
-        button = UIButton(frame: CGRect(x: 0.5 * (viewW - 200), y: viewH - 200, width: 200, height: 40))
-        button.setTitle("rotate", for: .normal)
-        button.backgroundColor = .white
-        button.addTarget(self, action: #selector(rotateCamera), for: .touchUpInside)
+        button = UIButton(frame: CGRect(x: 100, y: viewH - 200, width: 80, height: 80))
+        button.setTitle("move", for: .normal)
+        // button.backgroundColor = .white
+        button.addTarget(self, action: #selector(moveCam), for: .touchUpInside)
+        self.view.addSubview(button)
+    }
+    
+    @objc func moveCam()
+    {
+        let dx = -(10 * sin(cameraNode.eulerAngles.y))
+        let dz = -(10 * cos(cameraNode.eulerAngles.y))
+        let newY = surface.heightAt(x: cameraNode.position.x, z: cameraNode.position.z)
+        
+        var newCamPos = SCNVector3((cameraNode.position.x + dx), newY + 5, 8)
     }
     
     @objc func showControls()
@@ -275,7 +315,7 @@ class GameViewController: UIViewController {
                 let frame = CGRect(x: 0.5 * (bounds.width - 300), y: bounds.height - 400, width: 300, height: 300)
                 let useNear = cameraNode.camera?.zNear ?? 0
                 let useFar = cameraNode.camera?.zFar ?? 2000
-                controller.configure(camPosition: cameraNode.position, lightPos: lightNode.position, near: Float(useNear), far: Float(useFar), delegate: self)
+                controller.configure(camPosition: cameraNode.position, camRot: cameraNode.eulerAngles, lightPos: lightNode.position, near: Float(useNear), far: Float(useFar), delegate: self)
                 controller.view.frame = frame
                 self.view.addSubview(controller.view)
                 self.addChild(controller)
@@ -310,10 +350,16 @@ class GameViewController: UIViewController {
         setupSegControl()
         setUpLights()
         setupRotateButton()
+        setupRotateButtonAgain()
         setupControlButton()
+        setupRotateButton()
+        setupMoveButton()
         surface = MoonPoint.buildArray()
         setupGeometry()
+        setupReset()
         //rotateAround()
+        cameraNode.position = SCNVector3(x: 141.513, y: -1266.87, z: -188.34)
+        
     }
 
     override var prefersStatusBarHidden: Bool {
@@ -347,6 +393,10 @@ extension SCNGeometrySource {
 
 extension GameViewController: sceneCNTProtocol
 {
+    func updateCamRotation(_ rot: SCNVector3) {
+        cameraNode.eulerAngles = rot
+    }
+    
     func updateNear(_ near: Float) {
         cameraNode.camera?.zNear = Double(near)
     }

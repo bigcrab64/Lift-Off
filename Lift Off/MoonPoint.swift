@@ -17,17 +17,24 @@ struct MoonPoint {
 typealias MoonSurface = [[MoonPoint]]
 
 extension MoonPoint {
+    static let csvW = 100
+    static let csvH = 100
+    
+    var maxDim: Int{
+        return Swift.max(MoonPoint.csvW, MoonPoint.csvH)
+    }
+    
 
     static func buildArray() -> MoonSurface {
-        let latitude = decodeCsvNumberFile(name: "latitude10x10")
-        let longitude = decodeCsvNumberFile(name: "longitude10x10")
-        let height = decodeCsvNumberFile(name: "height10x10")
-        let slope = decodeCsvNumberFile(name: "slope10x10")
+        let latitude = decodeCsvNumberFile(name: "latitude100x100")
+        let longitude = decodeCsvNumberFile(name: "longitude100x100")
+        let height = decodeCsvNumberFile(name: "height100x100")
+        let slope = decodeCsvNumberFile(name: "slope100x100")
         // print(results)
         var points: [[MoonPoint]] = []
-        for y in 0...9 {
+        for y in 0..<csvH {
             var row: [MoonPoint] = []
-            for x in 0...9 {
+            for x in 0..<csvH {
                 row.append(MoonPoint(latitude: latitude[y][x], longitude: longitude[y][x], height: height[y][x], slope: slope[y][x]))
             }
             points.append(row)
@@ -64,11 +71,37 @@ import Foundation
 import SceneKit
 
 extension MoonSurface {
+    
+    func heightAt(x: Float, z: Float) -> Float
+    {
+        let scale = Float(40.0)
+        let xDivided = x / scale
+        let zDivided = z / -scale
+        let xZero = Int(xDivided)
+        let xOne = Int(xDivided + 1)
+        let zZero = Int(zDivided)
+        let zOne = Int(zDivided + 1)
+        
+        let yZero = (self[zZero][xZero].height)
+        let yOne = (self[zZero][xOne].height)
+        
+        let y = Float(yZero)+(xDivided - Float(xZero)) * (Float(yOne - yZero))
+        
+        let yZeroTop = (self[zOne][xZero].height)
+        let yOneTop = (self[zOne][xOne].height)
+        
+        let yTop = Float(yZeroTop) + (xDivided - Float(xZero)) * (Float(yOneTop - yZeroTop))
+        
+        let yMid = Float(y) + (zDivided - Float(zZero)) * (Float(yTop - y))
+        
+        return Float(yMid)
+    }
 
     func point3dAt(x: Int, y: Int) -> SCNVector3 {
         let scale: Float = 40.0
         let point = SCNVector3(x: scale * Float(x), y: Float(self[y][x].height), z: -scale * Float(y))
         return point
+        
     }
 
     func slopeColorAt(x: Int, y: Int) -> SCNVector3 {
@@ -81,11 +114,11 @@ extension MoonSurface {
         var sign: Float = 1
         var x2 = x + 1
         var y2 = y + 1
-        if x >= 9 {
+        if x >= MoonPoint.csvW {
             x2 = x - 1
             sign *= -1
         }
-        if y >= 9 {
+        if y >= MoonPoint.csvH {
             y2 = y - 1
             sign *= -1
         }
