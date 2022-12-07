@@ -77,7 +77,7 @@ extension MoonSurface {
         let zZero = Int(zDivided)
         let zOne = Int(zDivided + 1)
         
-        
+    
         let yZero = (self[zZero][xZero].height)
         let yOne = (self[zZero][xOne].height)
     
@@ -103,7 +103,7 @@ extension MoonSurface {
 
     func slopeColorAt(x: Int, y: Int) -> SCNVector3 {
         let slope = Int(self[y][x].slope)
-        let color = SlopeColor[slope]
+        let color = AltSlopeColor[slope]
         return color
     }
 

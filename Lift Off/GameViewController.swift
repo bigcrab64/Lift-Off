@@ -32,7 +32,8 @@ class GameViewController: UIViewController {
         scnView.allowsCameraControl = false
         // 3
         scnView.autoenablesDefaultLighting = false
-        scnView.backgroundColor = UIColor.blue
+        scnView.backgroundColor = UIColor.black
+        
     }
 
     func setupScene() {
@@ -279,9 +280,9 @@ class GameViewController: UIViewController {
     }
     
     @objc func resetPosition () {
-        cameraNode.position = SCNVector3(x: 903.291, y: -1068.1818, z: -2989.8994)
+        cameraNode.position = SCNVector3(x: 1195.3997, y: -1113.9523, z: -2497.4578)
         
-        lightNode.position = SCNVector3(x: 96.20252, y: -1041.6666, z: -244.44452)
+        lightNode.position = SCNVector3(x: 1122.4335, y: -357.95456, z: 15000)
         cameraNode.camera?.zNear = 1
         cameraNode.camera?.zFar = 15000
     }
@@ -295,8 +296,8 @@ class GameViewController: UIViewController {
     }
     
     @objc func moveForward () {
-        let dX = -(10 * sin(cameraNode.eulerAngles.y))
-        let dZ = -(10 * cos(cameraNode.eulerAngles.y))
+        let dX = -(50 * sin(cameraNode.eulerAngles.y))
+        let dZ = -(50 * cos(cameraNode.eulerAngles.y))
         let newY = surface.heightAt(x: cameraNode.position.x, z: cameraNode.position.z)
         
         var newCameraPosition = SCNVector3((cameraNode.position.x + dX), newY + 5, (cameraNode.position.z + dZ))
@@ -313,10 +314,11 @@ class GameViewController: UIViewController {
     }
     
     @objc func moveBackwards () {
-        let dX = (10 * sin(cameraNode.eulerAngles.y))
-        let dZ = (10 * cos(cameraNode.eulerAngles.y))
+        let dX = (50 * sin(cameraNode.eulerAngles.y))
+        let dZ = (50 * cos(cameraNode.eulerAngles.y))
+        let newY = surface.heightAt(x: cameraNode.position.x, z: cameraNode.position.z)
         
-        var newCameraPosition = SCNVector3((cameraNode.position.x + dX), cameraNode.position.y, (cameraNode.position.z + dZ))
+        var newCameraPosition = SCNVector3((cameraNode.position.x + dX), newY + 5, (cameraNode.position.z + dZ))
         cameraNode.position = newCameraPosition
     }
     
@@ -363,7 +365,6 @@ class GameViewController: UIViewController {
     }
     
     func setupControlButton() {
-        let viewW = self.view.frame.width
         let button = UIButton(frame: CGRect(x: 320, y: 110, width: 100, height: 40))
         button.setImage(UIImage(systemName: "gear"), for: .normal)
         button.tintColor = .white

@@ -29,6 +29,7 @@
 		F7DC42402922A7E1004189EA /* latitude100x100.csv in Resources */ = {isa = PBXBuildFile; fileRef = F7DC423C2922A7E1004189EA /* latitude100x100.csv */; };
 		F7DC42412922A7E1004189EA /* slope100x100.csv in Resources */ = {isa = PBXBuildFile; fileRef = F7DC423D2922A7E1004189EA /* slope100x100.csv */; };
 		F7DC42422922A7E1004189EA /* longitude100x100.csv in Resources */ = {isa = PBXBuildFile; fileRef = F7DC423E2922A7E1004189EA /* longitude100x100.csv */; };
+		F7EAB5B5293685BB00FE5A1A /* AlternateSlopeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EAB5B4293685BB00FE5A1A /* AlternateSlopeColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		F7DC423C2922A7E1004189EA /* latitude100x100.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = latitude100x100.csv; sourceTree = "<group>"; };
 		F7DC423D2922A7E1004189EA /* slope100x100.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = slope100x100.csv; sourceTree = "<group>"; };
 		F7DC423E2922A7E1004189EA /* longitude100x100.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = longitude100x100.csv; sourceTree = "<group>"; };
+		F7EAB5B4293685BB00FE5A1A /* AlternateSlopeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternateSlopeColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 				F707193B29196CBA00168EBB /* SliderCell.swift */,
 				F707193D29196D0200168EBB /* SliderCell.xib */,
 				F70719392915661F00168EBB /* SlopeColor.swift */,
+				F7EAB5B4293685BB00FE5A1A /* AlternateSlopeColor.swift */,
 				F707193429117B7500168EBB /* height10x10.csv */,
 				F707193329117B7500168EBB /* latitude10x10.csv */,
 				F707193129117B7500168EBB /* longitude10x10.csv */,
@@ -310,6 +313,7 @@
 				F7DC423A29197224004189EA /* SceneControlVC.swift in Sources */,
 				F707193A2915661F00168EBB /* SlopeColor.swift in Sources */,
 				F73659032910235C0080A8A5 /* AppDelegate.swift in Sources */,
+				F7EAB5B5293685BB00FE5A1A /* AlternateSlopeColor.swift in Sources */,
 				F70719282911758F00168EBB /* MoonPoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
